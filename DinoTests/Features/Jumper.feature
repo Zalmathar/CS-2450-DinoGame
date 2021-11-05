@@ -41,9 +41,9 @@ Feature: Jumper
 		Given frame update
 		When player updates position
 		Then horizontal position should be constant
-		Scenario: Constructed correctly
+	Scenario: Constructed correctly
 
-#small rock test cases
+	#small rock test cases
 
 	Scenario: correctly constructed small rock
 		Given a position of x is starting Position
@@ -53,197 +53,197 @@ Feature: Jumper
 		And Position y is 0
 		And score is set to 8
 
-		Scenario: small rock moves
+	Scenario: small rock moves
 		Given a small rock
 
-When a frame update happens
+		When a frame update happens
 
-Then position x is 1 less
+		Then position x is 1 less
 
-And y position is the same
+		And y position is the same
 
- 
- Scenario: big rock moves
-Given a big rock
 
-When a frame update happens
+	Scenario: big rock moves
+		Given a big rock
 
-Then position x is 1 less
+		When a frame update happens
 
-And y position is the same
+		Then position x is 1 less
 
- 
- Scenario: bird moves
-Given a bird
+		And y position is the same
 
-When a frame update happens
 
-Then position x is 1 less
+	Scenario: bird moves
+		Given a bird
 
-And y position is the same
+		When a frame update happens
 
- 
- Scenario: wrong constructor
-Scenario: y position is wrong
+		Then position x is 1 less
 
-Given a position of x is starting Position
-And a position of y is 1;
-When a small rock is constructed using Position
-Then throw exception
+		And y position is the same
 
- 
 
-Scenario: y position is negative
+	Scenario: wrong constructor
+	Scenario: y position is wrong
 
-Given a position of x is starting Position
-And a position of y is -1;
-When a small rock is constructed using Position
-Then throw exception
+		Given a position of x is starting Position
+		And a position of y is 1;
+		When a small rock is constructed using Position
+		Then throw exception
 
- 
 
-Scenario: x position is wrong
 
-Given a position of x is -1
-And a position of y is 0;
-When a small rock is constructed using Position
-Then throw exception
+	Scenario: y position is negative
 
- 
+		Given a position of x is starting Position
+		And a position of y is -1;
+		When a small rock is constructed using Position
+		Then throw exception
 
-Scenario: x position is too high
 
-Given a position of x is greater than starting Position
-And a position of y is 0;
-When a small rock is constructed using Position
-Then throw exception
 
- 
+	Scenario: x position is wrong
 
-Scenario: small rock points are correct
+		Given a position of x is -1
+		And a position of y is 0;
+		When a small rock is constructed using Position
+		Then throw exception
 
-Given a position of x is starting Position
-And a position of y is 0;
-When a small rock is constructed using Position
-Then the score is 8
 
- 
 
-#big rock test cases
+	Scenario: x position is too high
 
- 
+		Given a position of x is greater than starting Position
+		And a position of y is 0;
+		When a small rock is constructed using Position
+		Then throw exception
 
-Scenario: Constructed correctly
 
-Given a position of x is starting Position
-And a position of y is 0;
-When a big rock is constructed using Position
-Then Position x is starting Position
-And Position y is 0
-And score is set to 10
 
- 
+	Scenario: small rock points are correct
 
-Scenario: y position is wrong
+		Given a position of x is starting Position
+		And a position of y is 0;
+		When a small rock is constructed using Position
+		Then the score is 8
 
-Given a position of x is starting Position
-And a position of y is 1;
-When a big rock is constructed using Position
-Then throw exception
 
- 
 
-Scenario: y position is negative
-Given a position of x is starting Position
-And a position of y is -1;
-When a big rock is constructed using Position
-Then throw exception
+	#big rock test cases
 
- 
 
-Scenario: x position is wrong
 
-Given a position of x is -1
-And a position of y is 0;
-When a big rock is constructed using Position
-Then throw exception
+	Scenario: Constructed correctly
 
- 
+		Given a position of x is starting Position
+		And a position of y is 0;
+		When a big rock is constructed using Position
+		Then Position x is starting Position
+		And Position y is 0
+		And score is set to 10
 
-Scenario: x position is too high
 
-Given a position of x is greater than starting Position
-And a position of y is 0;
-When a big rock is constructed using Position
-Then throw exception
 
- 
+	Scenario: y position is wrong
 
-Scenario: big rock points are correct
+		Given a position of x is starting Position
+		And a position of y is 1;
+		When a big rock is constructed using Position
+		Then throw exception
 
-Given a position of x is starting Position
-And a position of y is 0;
-When a big rock is constructed using Position
-Then the score is 10
 
- 
 
- 
+	Scenario: y position is negative
+		Given a position of x is starting Position
+		And a position of y is -1;
+		When a big rock is constructed using Position
+		Then throw exception
 
-#bird test cases
 
- 
 
-Scenario: Constructed correctly
+	Scenario: x position is wrong
 
-Given a position of x is starting Position
-And a position of y is bird starting Position;
-When a small rock is constructed using Position
-Then Position x is starting Position
-And Position y is bird starting Position
-And score is set to 20
+		Given a position of x is -1
+		And a position of y is 0;
+		When a big rock is constructed using Position
+		Then throw exception
 
- 
 
-Scenario: y position is wrong
 
-Given a position of x is starting Position
-And a position of y is 1;
-When a bird is constructed using Position
-Then throw exception
- 
+	Scenario: x position is too high
 
-Scenario: y position is negative
+		Given a position of x is greater than starting Position
+		And a position of y is 0;
+		When a big rock is constructed using Position
+		Then throw exception
 
-Given a position of x is starting Position
-And a position of y is -1;
-When a small rock is constructed using Position
-Then throw exception
 
- 
-Scenario: x position is wrong
-Given a position of x is -1
-And a position of y is bird starting Position;
-When a bird is constructed using Position
-Then throw exception
 
- 
+	Scenario: big rock points are correct
 
-Scenario: x position is too high
+		Given a position of x is starting Position
+		And a position of y is 0;
+		When a big rock is constructed using Position
+		Then the score is 10
 
-Given a position of x is greater than starting Position
-And a position of y is bird starting Position;
-When a bird is constructed using Position
-Then throw exception
 
- 
 
-Scenario: bird points are correct
 
-Given a position of x is starting Position
-And a position of y is bird starting Position;
-When a bird is constructed using Position
-Then the score is 20
+
+	#bird test cases
+
+
+
+	Scenario: Constructed correctly
+
+		Given a position of x is starting Position
+		And a position of y is bird starting Position;
+		When a small rock is constructed using Position
+		Then Position x is starting Position
+		And Position y is bird starting Position
+		And score is set to 20
+
+
+
+	Scenario: y position is wrong
+
+		Given a position of x is starting Position
+		And a position of y is 1;
+		When a bird is constructed using Position
+		Then throw exception
+
+
+	Scenario: y position is negative
+
+		Given a position of x is starting Position
+		And a position of y is -1;
+		When a small rock is constructed using Position
+		Then throw exception
+
+
+	Scenario: x position is wrong
+		Given a position of x is -1
+		And a position of y is bird starting Position;
+		When a bird is constructed using Position
+		Then throw exception
+
+
+
+	Scenario: x position is too high
+
+		Given a position of x is greater than starting Position
+		And a position of y is bird starting Position;
+		When a bird is constructed using Position
+		Then throw exception
+
+
+
+	Scenario: bird points are correct
+
+		Given a position of x is starting Position
+		And a position of y is bird starting Position;
+		When a bird is constructed using Position
+		Then the score is 20
 
 	# Controller tests
 	@Score
