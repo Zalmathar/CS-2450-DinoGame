@@ -6,6 +6,7 @@ Feature: Jumper
 		***Further read***: **[Learn more about how to generate Living Documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/Generating-Documentation.html)**
 
 	@mytag
+	#piece tests
 	Scenario: JUM-22 1
 		Given player jumping
 		When cycles passed is 1
@@ -40,6 +41,209 @@ Feature: Jumper
 		Given frame update
 		When player updates position
 		Then horizontal position should be constant
+		Scenario: Constructed correctly
+
+#small rock test cases
+
+	Scenario: correctly constructed small rock
+		Given a position of x is starting Position
+		And a position of y is 0;
+		When a small rock is constructed using Position
+		Then Position x is starting Position
+		And Position y is 0
+		And score is set to 8
+
+		Scenario: small rock moves
+		Given a small rock
+
+When a frame update happens
+
+Then position x is 1 less
+
+And y position is the same
+
+ 
+ Scenario: big rock moves
+Given a big rock
+
+When a frame update happens
+
+Then position x is 1 less
+
+And y position is the same
+
+ 
+ Scenario: bird moves
+Given a bird
+
+When a frame update happens
+
+Then position x is 1 less
+
+And y position is the same
+
+ 
+ Scenario: wrong constructor
+Scenario: y position is wrong
+
+Given a position of x is starting Position
+And a position of y is 1;
+When a small rock is constructed using Position
+Then throw exception
+
+ 
+
+Scenario: y position is negative
+
+Given a position of x is starting Position
+And a position of y is -1;
+When a small rock is constructed using Position
+Then throw exception
+
+ 
+
+Scenario: x position is wrong
+
+Given a position of x is -1
+And a position of y is 0;
+When a small rock is constructed using Position
+Then throw exception
+
+ 
+
+Scenario: x position is too high
+
+Given a position of x is greater than starting Position
+And a position of y is 0;
+When a small rock is constructed using Position
+Then throw exception
+
+ 
+
+Scenario: small rock points are correct
+
+Given a position of x is starting Position
+And a position of y is 0;
+When a small rock is constructed using Position
+Then the score is 8
+
+ 
+
+#big rock test cases
+
+ 
+
+Scenario: Constructed correctly
+
+Given a position of x is starting Position
+And a position of y is 0;
+When a big rock is constructed using Position
+Then Position x is starting Position
+And Position y is 0
+And score is set to 10
+
+ 
+
+Scenario: y position is wrong
+
+Given a position of x is starting Position
+And a position of y is 1;
+When a big rock is constructed using Position
+Then throw exception
+
+ 
+
+Scenario: y position is negative
+Given a position of x is starting Position
+And a position of y is -1;
+When a big rock is constructed using Position
+Then throw exception
+
+ 
+
+Scenario: x position is wrong
+
+Given a position of x is -1
+And a position of y is 0;
+When a big rock is constructed using Position
+Then throw exception
+
+ 
+
+Scenario: x position is too high
+
+Given a position of x is greater than starting Position
+And a position of y is 0;
+When a big rock is constructed using Position
+Then throw exception
+
+ 
+
+Scenario: big rock points are correct
+
+Given a position of x is starting Position
+And a position of y is 0;
+When a big rock is constructed using Position
+Then the score is 10
+
+ 
+
+ 
+
+#bird test cases
+
+ 
+
+Scenario: Constructed correctly
+
+Given a position of x is starting Position
+And a position of y is bird starting Position;
+When a small rock is constructed using Position
+Then Position x is starting Position
+And Position y is bird starting Position
+And score is set to 20
+
+ 
+
+Scenario: y position is wrong
+
+Given a position of x is starting Position
+And a position of y is 1;
+When a bird is constructed using Position
+Then throw exception
+ 
+
+Scenario: y position is negative
+
+Given a position of x is starting Position
+And a position of y is -1;
+When a small rock is constructed using Position
+Then throw exception
+
+ 
+Scenario: x position is wrong
+Given a position of x is -1
+And a position of y is bird starting Position;
+When a bird is constructed using Position
+Then throw exception
+
+ 
+
+Scenario: x position is too high
+
+Given a position of x is greater than starting Position
+And a position of y is bird starting Position;
+When a bird is constructed using Position
+Then throw exception
+
+ 
+
+Scenario: bird points are correct
+
+Given a position of x is starting Position
+And a position of y is bird starting Position;
+When a bird is constructed using Position
+Then the score is 20
 
 	# Controller tests
 	@Score
@@ -89,3 +293,5 @@ Feature: Jumper
 		When the next fram cycle happens.
 		And the playe rcollildes with the bird.
 		Then no points are added to the score.
+
+
