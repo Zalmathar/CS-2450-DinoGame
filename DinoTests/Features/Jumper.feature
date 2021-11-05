@@ -248,7 +248,7 @@ Feature: Jumper
 	# Controller tests
 	@JUM25_Score
 	Scenario: JUM25 No Obsticle One point added
-		Given there is no obstacle in front of the player.
+		Given there is a player located at (3, 1)
 		When the next frame cycle happnes.
 		Then The score increases by 1 points
 
