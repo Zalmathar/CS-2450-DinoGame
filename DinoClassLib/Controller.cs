@@ -9,7 +9,7 @@ namespace DinoClassLib
     public class Controller
     {
         private Player player;
-        private List<Piece> obsticales;
+        private List<Piece> obstacles;
         private int score;
 
         enum status
@@ -30,7 +30,7 @@ namespace DinoClassLib
             throw new NotImplementedException();
         }
 
-        private void MakeObsticale()
+        private void MakeObstacle()
         {
             throw new NotImplementedException();
         }
