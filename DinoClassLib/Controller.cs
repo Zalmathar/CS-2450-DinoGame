@@ -41,7 +41,7 @@ namespace DinoClassLib
             /* TODO: Any Obstacle that has reached the far left of the view must get deleted.
                   To do this im thinking of in this iteration loop, store the index of each item that needs to be deleted. 
                   Than deleting them from the largest index to the smallest. IE. If the obstacles stored at index 1, 3, and 10 need to be deleted. Delete them in order 10, 3, then 1. 
-                  Deleteing them in reverse would preserve the integrity of the list as we delete multiple objects from it. Minimizing the amount of times we have to iterate through our obsticale list. 
+                  Deleteing them in reverse would preserve the integrity of the list as we delete multiple objects from it. Minimizing the amount of times we have to iterate through our obstacle list. 
                   We would then pass this array of indexes to be deleted to our delete method that would go in and delete them. -- Tanis Olesen
             */
             // TODO: Randomly generate a new obsticales
