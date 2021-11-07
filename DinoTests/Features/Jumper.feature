@@ -41,26 +41,8 @@ Feature: Jumper
 		Given frame update
 		When player updates position
 		Then horizontal position should be constant
-	Scenario: Constructed correctly
 
-	#small rock test cases
-
-	Scenario: correctly constructed small rock
-		Given a position of x is starting Position
-		And a position of y is 0;
-		When a small rock is constructed using Position
-		Then Position x is starting Position
-		And Position y is 0
-		And score is set to 8
-
-	Scenario: small rock moves
-		Given a small rock
-
-		When a frame update happens
-
-		Then position x is 1 less
-
-		And y position is the same
+	
 
 
 	Scenario: big rock moves
