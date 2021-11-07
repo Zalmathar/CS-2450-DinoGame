@@ -7,8 +7,17 @@ namespace DinoClassLib
         Position position
         {
             get;
-        }  //protected? or private
+        }
         int pointVal
+        {
+            get;
+        }
+        int xSize
+        {
+            get;
+        }
+
+        int ySize
         {
             get;
         }

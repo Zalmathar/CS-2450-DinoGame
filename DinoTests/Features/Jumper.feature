@@ -41,209 +41,128 @@ Feature: Jumper
 		Given frame update
 		When player updates position
 		Then horizontal position should be constant
-	Scenario: Constructed correctly
 
 	#small rock test cases
-
-	Scenario: correctly constructed small rock
-		Given a position of x is starting Position
-		And a position of y is 0;
-		When a small rock is constructed using Position
-		Then Position x is starting Position
-		And Position y is 0
+	
+	Scenario: JUM-49 small rock Constructed correctly
+		Given a small rock at (4, 1)
+		When a small rock is constructed
+		Then Position x is 4
+		And Position y is 1
 		And score is set to 8
 
-	Scenario: small rock moves
+	Scenario: JUM-49 small rock y position is wrong
+		Given a small rock at (4, 2)
+		When a small rock is constructed
+		Then throw exception
+
+	Scenario: JUM-49 small rock y position is negative
+		Given Given a small rock at (4, -1)
+		When a small rock is constructed
+		Then throw exception
+
+	Scenario: JUM-49 small rock x position is wrong
+		Given a small rock at (1, 1)
+		When a small rock is constructed
+		Then throw exception
+
+	Scenario: JUM-49 small rock x position is too high
+		Given Given a small rock at (500, 1)
+		When a small rock is constructed
+		Then throw exception
+
+	Scenario: JUM-49 small rock points are correct
+		Given a small rock at (4, 1)
+		When a small rock is constructed
+		Then score is set to 8
+
+	Scenario: JUM-49 small rock frame update
 		Given a small rock
-
 		When a frame update happens
-
 		Then position x is 1 less
-
 		And y position is the same
-
-
-	Scenario: big rock moves
-		Given a big rock
-
-		When a frame update happens
-
-		Then position x is 1 less
-
-		And y position is the same
-
-
-	Scenario: bird moves
-		Given a bird
-
-		When a frame update happens
-
-		Then position x is 1 less
-
-		And y position is the same
-
-
-	Scenario: wrong constructor
-	Scenario: y position is wrong
-
-		Given a position of x is starting Position
-		And a position of y is 1;
-		When a small rock is constructed using Position
-		Then throw exception
-
-
-
-	Scenario: y position is negative
-
-		Given a position of x is starting Position
-		And a position of y is -1;
-		When a small rock is constructed using Position
-		Then throw exception
-
-
-
-	Scenario: x position is wrong
-
-		Given a position of x is -1
-		And a position of y is 0;
-		When a small rock is constructed using Position
-		Then throw exception
-
-
-
-	Scenario: x position is too high
-
-		Given a position of x is greater than starting Position
-		And a position of y is 0;
-		When a small rock is constructed using Position
-		Then throw exception
-
-
-
-	Scenario: small rock points are correct
-
-		Given a position of x is starting Position
-		And a position of y is 0;
-		When a small rock is constructed using Position
-		Then the score is 8
-
-
 
 	#big rock test cases
 
-
-
-	Scenario: Constructed correctly
-
-		Given a position of x is starting Position
-		And a position of y is 0;
-		When a big rock is constructed using Position
-		Then Position x is starting Position
-		And Position y is 0
+	Scenario: big rock Constructed correctly
+		Given a big rock at (4, 1)
+		When a big rock is constructed
+		Then Position x is 4
+		And Position y is 1
 		And score is set to 10
 
-
-
-	Scenario: y position is wrong
-
-		Given a position of x is starting Position
-		And a position of y is 1;
-		When a big rock is constructed using Position
+	Scenario: JUM-50 big rock y position is wrong
+		Given a big rock at (4, 2)
+		When a big rock is constructed
 		Then throw exception
 
-
-
-	Scenario: y position is negative
-		Given a position of x is starting Position
-		And a position of y is -1;
-		When a big rock is constructed using Position
+	Scenario: JUM-50 big rock y position is negative
+		Given Given a big rock at (4, -1)
+		When a big rock is constructed
 		Then throw exception
 
-
-
-	Scenario: x position is wrong
-
-		Given a position of x is -1
-		And a position of y is 0;
-		When a big rock is constructed using Position
+	Scenario: JUM-50 big rock x position is wrong
+		Given a big rock at (1, 1)
+		When a big rock is constructed
 		Then throw exception
 
-
-
-	Scenario: x position is too high
-
-		Given a position of x is greater than starting Position
-		And a position of y is 0;
-		When a big rock is constructed using Position
+	Scenario: JUM-50 big rock x position is too high
+		Given Given a big rock at (500, 1)
+		When a big rock is constructed
 		Then throw exception
 
+	Scenario: JUM-50 big rock points are correct
+		Given a big rock at (4, 1)
+		When a big rock is constructed
+		Then score is set to 10
 
-
-	Scenario: big rock points are correct
-
-		Given a position of x is starting Position
-		And a position of y is 0;
-		When a big rock is constructed using Position
-		Then the score is 10
-
-
-
-
+	Scenario: JUM-50 big rock frame update
+		Given a big rock
+		When a frame update happens
+		Then position x is 1 less
+		And y position is the same
 
 	#bird test cases
 
-
-
-	Scenario: Constructed correctly
-
-		Given a position of x is starting Position
-		And a position of y is bird starting Position;
-		When a small rock is constructed using Position
-		Then Position x is starting Position
-		And Position y is bird starting Position
+	Scenario: JUM-51 bird Constructed correctly
+		Given a bird at (4, 4)
+		When a bird is constructed
+		Then Position x is 4
+		And Position y is 4
 		And score is set to 20
 
-
-
-	Scenario: y position is wrong
-
-		Given a position of x is starting Position
-		And a position of y is 1;
-		When a bird is constructed using Position
+	Scenario: JUM-51 bird y position is wrong
+		Given a bird at (4, 2)
+		When a bird is constructed
 		Then throw exception
 
-
-	Scenario: y position is negative
-
-		Given a position of x is starting Position
-		And a position of y is -1;
-		When a small rock is constructed using Position
+	Scenario: JUM-51 bird y position is negative
+		Given Given a bird at (4, -1)
+		When a bird is constructed
 		Then throw exception
 
-
-	Scenario: x position is wrong
-		Given a position of x is -1
-		And a position of y is bird starting Position;
-		When a bird is constructed using Position
+	Scenario: JUM-51 bird x position is wrong
+		Given a bird at (1, 1)
+		When a bird is constructed
 		Then throw exception
 
-
-
-	Scenario: x position is too high
-
-		Given a position of x is greater than starting Position
-		And a position of y is bird starting Position;
-		When a bird is constructed using Position
+	Scenario: JUM-51 bird x position is too high
+		Given Given a bird at (500, 1)
+		When a bird is constructed
 		Then throw exception
 
+	Scenario: JUM-51 bird points are correct
+		Given a bird at (4, 4)
+		When a bird is constructed
+		Then score is set to 20
 
+	Scenario: JUM-51 bird frame update
+		Given a bird
+		When a frame update happens
+		Then position x is 1 less
+		And y position is the same
 
-	Scenario: bird points are correct
-
-		Given a position of x is starting Position
-		And a position of y is bird starting Position;
-		When a bird is constructed using Position
-		Then the score is 20
+	
 
 	# Controller tests
 	@JUM25_Score
