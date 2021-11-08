@@ -86,6 +86,7 @@ namespace DinoTests.Steps
 
 
         //bird tests start
+
         [Given(@"a bird at \((.*), (.*)\)")]
         public void GivenABirdAt(int p0, int p1)
         {
@@ -93,7 +94,6 @@ namespace DinoTests.Steps
             y = p1;
 
         }
-
         [When(@"a bird is constructed")]
         public void WhenABirdIsConstructed()
         {
@@ -105,18 +105,14 @@ namespace DinoTests.Steps
             {
                 sc_.Add("Exception", e);
             }
-
         }
-
-
-        [Then(@"Bird Position x is (.*)")]
+        [Then(@"bird Position x is (.*)")]
         public void ThenBirdPositionXIs(int p0)
         {
             sc_["bird"].As<Bird>().position.getX().Should().Be(p0);
         }
 
-
-        [Then(@"Bird Position y is (.*)")]
+        [Then(@"bird Position y is (.*)")]
         public void ThenBirdPositionYIs(int p0)
         {
             sc_["bird"].As<Bird>().position.getY().Should().Be(p0);
