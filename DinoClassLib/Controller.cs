@@ -8,8 +8,8 @@ namespace DinoClassLib
 {
     public class Controller
     {
-        private Player player;
-        private List<Piece> obsticales;
+        //private Player player;
+        //private List<Piece> obsticales;
         private int score;
 
         enum status
