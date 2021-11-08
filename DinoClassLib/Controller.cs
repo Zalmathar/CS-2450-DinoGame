@@ -12,9 +12,13 @@ namespace DinoClassLib
         // Represents the player
         private Player player;
         // Holds a List of all of the obstacles that are on screen
-        private List<IPiece> obstacles;
+        public List<IPiece> Obstacles { get; private set;}
+        
+
         // Represents the current score the player of the game has achieved. 
         private int score;
+        //ToDo: represesnts the display size in the x direction. should be set on frame update by the returned value of the IO
+        private int displayXsize;
         // Represents the states the game can be in
         enum status
         {
@@ -46,8 +50,9 @@ namespace DinoClassLib
                   We would then pass this array of indexes to be deleted to our delete method that would go in and delete them. -- Tanis Olesen
             */
             // TODO: Randomly generate a new obsticales
+            MakeObstacle();
             // TODO: Display the game state to the user.
-            throw new NotImplementedException();
+            
         }
 
         // Checks each obstacle agains the players position to determin if a collision has been detected.
@@ -62,11 +67,23 @@ namespace DinoClassLib
         private void MakeObstacle()
 
         {
-            // TODO: 1-50 Chance of the obstacle being a small rock
-            // TODO: 1-75 Chance of the obstacle being a large rock
-            // TODO: 1-100 Chance of the obstacle being a bird
-            // TODO: When an obsticale has been created set its position the maximum it can be. (Far right of the view)
-            throw new NotImplementedException();
+            Random RNG = new Random();
+
+            //1-50 Chance of the obstacle being a small rock
+            if (RNG.Next(50) == 1)
+            {
+                Obstacles.Add(new SmallRock(displayXsize, 0));
+            } 
+            //1-75 Chance of the obstacle being a large rock
+            else if (RNG.Next(75) == 1)
+            {
+                Obstacles.Add(new BigRock(displayXsize, 0));
+            }
+            //1-100 Chance of the obstacle being a bird
+            else if (RNG.Next(100) == 1)
+            {
+                Obstacles.Add(new Bird(displayXsize, RNG.Next(2) + 3));
+            }   
         }
         // When an obsticale has reached the minimum it can be (Far left of the view). Remove each obsticale that has reached the end of the screen
         private void DeleteObstacle(int[] delThese)
