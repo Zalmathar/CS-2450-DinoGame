@@ -5,14 +5,14 @@ using FluentAssertions;
 namespace DinoTests.Steps
 {
     [Binding]
-    public sealed class CalculatorStepDefinitions
+    public sealed class JumperStepDefinitions
     {
         private int x, y;
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
         private readonly ScenarioContext sc_;
 
-        public CalculatorStepDefinitions(ScenarioContext scenarioContext)
+        public JumperStepDefinitions(ScenarioContext scenarioContext)
         {
             sc_ = scenarioContext;
         }
