@@ -1,4 +1,5 @@
-﻿Feature: JUM49
+Feature: JUM49
+
 
     JUM49 Test cases
 
@@ -39,3 +40,4 @@
 		When a frame update happens
 		Then Position x is 3
 		And Position y is 1
+

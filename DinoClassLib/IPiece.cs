@@ -7,7 +7,7 @@ namespace DinoClassLib
         Position position
         {
             get;
-        }  //protected? or private
+        }
         int pointVal
         {
             get;
