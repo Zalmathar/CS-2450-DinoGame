@@ -142,5 +142,55 @@ namespace DinoTests.Steps
                 sc_.Add("Exception", e);
             }
         }
+
+
+
+        //big rock tests
+
+        [Given(@"a big rock at \((.*), (.*)\)")]
+        public void GivenABigRockAt(int p0, int p1)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [When(@"a big rock is constructed")]
+        public void WhenABigRockIsConstructed()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
+        [Then(@"big Position x is (.*)")]
+        public void ThenBigPositionXIs(int p0)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"big Position y is (.*)")]
+        public void ThenBigPositionYIs(int p0)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
+        [Then(@"big score is set to (.*)")]
+        public void ThenBigScoreIsSetTo(int p0)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Given(@"a big rock is constructed at \((.*), (.*)\)")]
+        public void GivenABigRockIsConstructedAt(int p0, int p1)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
+        [When(@"a big frame update happens")]
+        public void WhenABigFrameUpdateHappens()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
     }
 }

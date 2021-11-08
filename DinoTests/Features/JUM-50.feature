@@ -7,9 +7,9 @@ Feature: JUM50
 	Scenario: big rock Constructed correctly
 		Given a big rock at (4, 1)
 		When a big rock is constructed
-		Then Position x is 4
-		And Position y is 1
-		And score is set to 10
+		Then big Position x is 4
+		And big Position y is 1
+		And big score is set to 10
 
 	Scenario: JUM-50 big rock y position is wrong
 		Given a big rock at (4, 2)
@@ -17,7 +17,7 @@ Feature: JUM50
 		Then throw exception
 
 	Scenario: JUM-50 big rock y position is negative
-		Given Given a big rock at (4, -1)
+		Given a big rock at (4, -1)
 		When a big rock is constructed
 		Then throw exception
 
@@ -27,17 +27,17 @@ Feature: JUM50
 		Then throw exception
 
 	Scenario: JUM-50 big rock x position is too high
-		Given Given a big rock at (500, 1)
+		Given a big rock at (500, 1)
 		When a big rock is constructed
 		Then throw exception
 
 	Scenario: JUM-50 big rock points are correct
 		Given a big rock at (4, 1)
 		When a big rock is constructed
-		Then score is set to 10
+		Then big score is set to 10
 
 	Scenario: JUM-50 big rock frame update
-		Given a big rock
-		When a frame update happens
-		Then position x is 1 less
-		And y position is the same
+		Given a big rock is constructed at (4, 1)
+		When a big frame update happens
+		Then big Position x is 3
+		And big Position y is 1
