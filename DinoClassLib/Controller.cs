@@ -9,8 +9,8 @@ namespace DinoClassLib
     public class Controller
     {
 
-        // Represents the player commented until Player implemented
-        //private Player player;
+        // Represents the player
+        private Player player;
         // Holds a List of all of the obstacles that are on screen
         private List<IPiece> obstacles;
         // Represents the current score the player of the game has achieved. 
