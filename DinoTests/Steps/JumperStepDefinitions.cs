@@ -84,6 +84,74 @@ namespace DinoTests.Steps
             }
         }
 
+        //big rock tests
+
+         [Given(@"a big rock at \((.*), (.*)\)")]
+        public void GivenABigRockkAt(int p0, int p1)
+        {
+            x = p0;
+            y = p1;
+
+        }
+
+        [When(@"a big rock is constructed")]
+        public void WhenABigRockIsConstructed()
+        {
+            try
+            {
+                sc_.Add("bigrock", new BigRock(x, y));
+            }
+            catch (Exception e)
+            {
+                sc_.Add("Exception", e);
+            }
+
+        }
+
+        [Then(@"Position x is (.*)")]
+        public void ThenPositionXIs(int p0)
+        {
+            sc_["bigrock"].As<BigRock>().position.getX().Should().Be(p0);
+        }
+
+        [Then(@"Position y is (.*)")]
+        public void ThenPositionYIs(int p0)
+        {
+            sc_["Bigrock"].As<BigRock>().position.getY().Should().Be(p0);
+        }
+
+        [Then(@"score is set to (.*)")]
+        public void ThenScoreIsSetTo(int p0)
+        {
+            sc_["Bigrock"].As<BigRock>().pointVal.Should().Be(p0);
+        }
+
+
+        [Then(@"throw exception")]
+        public void ThenThrowException()
+        {
+            sc_.ContainsKey("Exception").Should().BeTrue();
+        }
+
+        [When(@"a frame update happens")]
+        public void WhenAFrameUpdateHappens()
+        {
+            sc_["Bigrock"].As<BigRock>().onFrameUpdate();
+        }
+
+        [Given(@"a big rock constructed at \((.*), (.*)\)")]
+        public void GivenABigRockConstructedAt(int p0, int p1)
+        {
+            try
+            {
+                sc_.Add("bigrock", new BigRock(p0, p1));
+            }
+            catch (Exception e)
+            {
+                sc_.Add("Exception", e);
+            }
+        }
+
 
         //bird tests start
 
