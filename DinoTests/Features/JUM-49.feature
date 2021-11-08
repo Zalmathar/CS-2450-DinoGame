@@ -1,5 +1,6 @@
 Feature: JUM49
 
+
     JUM49 Test cases
 
     Scenario: JUM-49 small rock Constructed correctly
@@ -15,7 +16,7 @@ Feature: JUM49
 		Then throw exception
 
 	Scenario: JUM-49 small rock y position is negative
-		Given Given a small rock at (4, -1)
+		Given a small rock at (4, -1)
 		When a small rock is constructed
 		Then throw exception
 
@@ -25,7 +26,7 @@ Feature: JUM49
 		Then throw exception
 
 	Scenario: JUM-49 small rock x position is too high
-		Given Given a small rock at (500, 1)
+		Given a small rock at (500, 1)
 		When a small rock is constructed
 		Then throw exception
 
@@ -35,10 +36,8 @@ Feature: JUM49
 		Then score is set to 8
 
 	Scenario: JUM-49 small rock frame update
-		Given a small rock
+		Given a small rock constructed at (4, 1)
 		When a frame update happens
-		Then position x is 1 less
-		And y position is the same
-
-
+		Then Position x is 3
+		And Position y is 1
 

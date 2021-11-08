@@ -8,10 +8,11 @@ namespace DinoClassLib
 {
     public class Controller
     {
-        // Represents the player
-        private Player player;
-        // Holds a List of all of the obsticales that are on screen
-        private List<IPiece> obsticales;
+
+        // Represents the player commented until Player implemented
+        //private Player player;
+        // Holds a List of all of the obstacles that are on screen
+        private List<IPiece> obstacles;
         // Represents the current score the player of the game has achieved. 
         private int score;
         // Represents the states the game can be in
@@ -57,8 +58,9 @@ namespace DinoClassLib
             throw new NotImplementedException();
         }
 
-        // Randomly creates obsticales that are then stored in the obsticale list. Has a chance of not creating any obstical's
-        private void MakeObsticale()
+        // Randomly creates obstacles that are then stored in the obsticale list. Has a chance of not creating any obstical's
+        private void MakeObstacle()
+
         {
             // TODO: 1-50 Chance of the obstacle being a small rock
             // TODO: 1-75 Chance of the obstacle being a large rock
