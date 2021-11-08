@@ -7,9 +7,9 @@ Feature: JUM51
 	Scenario: JUM-51 bird Constructed correctly
 		Given a bird at (4, 4)
 		When a bird is constructed
-		Then Position x is 4
-		And Position y is 4
-		And score is set to 20
+		Then bird Position x is 4
+		And bird Position y is 4
+		And bird score is set to 20
 
 	Scenario: JUM-51 bird y position is wrong
 		Given a bird at (4, 2)
@@ -22,7 +22,7 @@ Feature: JUM51
 		Then throw exception
 
 	Scenario: JUM-51 bird x position is wrong
-		Given a bird at (1, 1)
+		Given a bird at (1, 3)
 		When a bird is constructed
 		Then throw exception
 
@@ -34,10 +34,10 @@ Feature: JUM51
 	Scenario: JUM-51 bird points are correct
 		Given a bird at (4, 3)
 		When a bird is constructed
-		Then score is set to 20
+		Then bird score is set to 20
 
 	Scenario: JUM-51 bird frame update
 		Given a bird constructed at (4, 4)
-		When a frame update happens
-		Then Position x is 3
-		And Position y is 4
+		When a bird frame update happens
+		Then bird Position x is 3
+		And bird Position y is 4
