@@ -1,58 +1,89 @@
+using System;
 using TechTalk.SpecFlow;
-
+using DinoClassLib;
+using FluentAssertions;
 namespace DinoTests.Steps
 {
     [Binding]
     public sealed class CalculatorStepDefinitions
     {
-       
-       // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
+        private int x, y;
+        // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
-       private readonly ScenarioContext _scenarioContext;
+        private readonly ScenarioContext sc_;
 
-       public CalculatorStepDefinitions(ScenarioContext scenarioContext)
-       {
-           _scenarioContext = scenarioContext;
-       }
-
-       [Given("the first number is (.*)")]
-       public void GivenTheFirstNumberIs(int number)
-       {
-           //TODO: implement arrange (precondition) logic
-           // For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata
-           // To use the multiline text or the table argument of the scenario,
-           // additional string/Table parameters can be defined on the step definition
-           // method. 
-
-           _scenarioContext.Pending();
-       }
-
-       [Given("the second number is (.*)")]
-       public void GivenTheSecondNumberIs(int number)
-       {
-           //TODO: implement arrange (precondition) logic
-           // For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata
-           // To use the multiline text or the table argument of the scenario,
-           // additional string/Table parameters can be defined on the step definition
-           // method. 
-
-           _scenarioContext.Pending();
+        public CalculatorStepDefinitions(ScenarioContext scenarioContext)
+        {
+            sc_ = scenarioContext;
         }
-        
-       [When("the two numbers are added")]
-       public void WhenTheTwoNumbersAreAdded()
-       {
-           //TODO: implement act (action) logic
 
-           _scenarioContext.Pending();
-       }
 
-       [Then("the result should be (.*)")]
-       public void ThenTheResultShouldBe(int result)
-       {
-           //TODO: implement assert (verification) logic
+        [Given(@"a small rock at \((.*), (.*)\)")]
+        public void GivenASmallRockAt(int p0, int p1)
+        {
+            x = p0;
+            y = p1;
 
-           _scenarioContext.Pending();
-       }
+        }
+
+        [When(@"a small rock is constructed")]
+        public void WhenASmallRockIsConstructed()
+        {
+            try
+            {
+                sc_.Add("smallrock", new SmallRock(x, y));
+            }
+            catch (Exception e)
+            {
+                sc_.Add("Exception", e);
+            }
+
+        }
+
+        [Then(@"Position x is (.*)")]
+        public void ThenPositionXIs(int p0)
+        {
+            sc_["smallrock"].As<SmallRock>().position.getX().Should().Be(p0);
+        }
+
+        [Then(@"Position y is (.*)")]
+        public void ThenPositionYIs(int p0)
+        {
+            sc_["smallrock"].As<SmallRock>().position.getY().Should().Be(p0);
+        }
+
+        [Then(@"score is set to (.*)")]
+        public void ThenScoreIsSetTo(int p0)
+        {
+            sc_["smallrock"].As<SmallRock>().pointVal.Should().Be(p0);
+        }
+
+
+        [Then(@"throw exception")]
+        public void ThenThrowException()
+        {
+            sc_.ContainsKey("Exception").Should().BeTrue();
+        }
+
+        [When(@"a frame update happens")]
+        public void WhenAFrameUpdateHappens()
+        {
+            sc_["smallrock"].As<SmallRock>().onFrameUpdate();
+        }
+
+        [Given(@"a small rock constructed at \((.*), (.*)\)")]
+        public void GivenASmallRockConstructedAt(int p0, int p1)
+        {
+            try
+            {
+                sc_.Add("smallrock", new SmallRock(p0, p1));
+            }
+            catch (Exception e)
+            {
+                sc_.Add("Exception", e);
+            }
+        }
+
+
     }
 }

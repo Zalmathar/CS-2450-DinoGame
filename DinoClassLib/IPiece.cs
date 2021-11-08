@@ -12,6 +12,15 @@ namespace DinoClassLib
         {
             get;
         }
+        int xSize
+        {
+            get;
+        }
+
+        int ySize
+        {
+            get;
+        }
         public void onFrameUpdate();
     }
 
@@ -27,11 +36,26 @@ namespace DinoClassLib
         {
             get;
         }
-
-        SmallRock(int x)
+        public int xSize
         {
-            position = new Position(x,0);
+            get;
+        }
+
+        public int ySize
+        {
+            get;
+        }
+
+        public SmallRock(int x, int y)
+        {
+            position = new Position(x,y);
+            xSize = 1;
+            ySize = 1;
             pointVal = 8;
+            if(position.getY() != 1 || position.getX() > 50 || position.getX() <= 1)
+            {
+                throw new NotImplementedException();
+            }
         }
     public void onFrameUpdate()
         {
