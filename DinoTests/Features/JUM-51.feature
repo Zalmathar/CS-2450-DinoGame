@@ -32,7 +32,7 @@ Feature: JUM51
 		Then throw exception
 
 	Scenario: JUM-51 bird points are correct
-		Given a bird at (4, 4)
+		Given a bird at (4, 3)
 		When a bird is constructed
 		Then score is set to 20
 
