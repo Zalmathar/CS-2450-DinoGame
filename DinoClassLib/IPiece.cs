@@ -66,7 +66,7 @@ namespace DinoClassLib
     }
 
 
-    public class BigRock : IPiece
+   public class BigRock : IPiece
     {
 
         public Position position

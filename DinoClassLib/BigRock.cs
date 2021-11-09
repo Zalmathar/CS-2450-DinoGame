@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 
 namespace DinoClassLib
 {
@@ -26,7 +26,7 @@ namespace DinoClassLib
             get;
         }
 
-        public BigRock(position po)
+        public BigRock(Position po)
 		{
             position = po;
             xSize = 1;
@@ -40,3 +40,4 @@ namespace DinoClassLib
 	}
 
 }
+*/

@@ -108,33 +108,27 @@ namespace DinoTests.Steps
 
         }
 
-        [Then(@"Position x is (.*)")]
-        public void ThenPositionXIs(int p0)
+        [Then(@"big Position x is (.*)")]
+        public void ThenBigPositionXIs(int p0)
         {
             sc_["bigrock"].As<BigRock>().position.getX().Should().Be(p0);
         }
 
-        [Then(@"Position y is (.*)")]
-        public void ThenPositionYIs(int p0)
+        [Then(@"big Position y is (.*)")]
+        public void ThenBigPositionYIs(int p0)
         {
             sc_["Bigrock"].As<BigRock>().position.getY().Should().Be(p0);
         }
 
-        [Then(@"score is set to (.*)")]
-        public void ThenScoreIsSetTo(int p0)
+        [Then(@"big score is set to (.*)")]
+        public void ThenBigScoreIsSetTo(int p0)
         {
             sc_["Bigrock"].As<BigRock>().pointVal.Should().Be(p0);
         }
 
 
-        [Then(@"throw exception")]
-        public void ThenThrowException()
-        {
-            sc_.ContainsKey("Exception").Should().BeTrue();
-        }
-
-        [When(@"a frame update happens")]
-        public void WhenAFrameUpdateHappens()
+        [When(@"a big frame update happens")]
+        public void WhenABigFrameUpdateHappens()
         {
             sc_["Bigrock"].As<BigRock>().onFrameUpdate();
         }
@@ -209,55 +203,6 @@ namespace DinoTests.Steps
             {
                 sc_.Add("Exception", e);
             }
-        }
-
-
-
-        //big rock tests
-
-        [Given(@"a big rock at \((.*), (.*)\)")]
-        public void GivenABigRockAt(int p0, int p1)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [When(@"a big rock is constructed")]
-        public void WhenABigRockIsConstructed()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-
-        [Then(@"big Position x is (.*)")]
-        public void ThenBigPositionXIs(int p0)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"big Position y is (.*)")]
-        public void ThenBigPositionYIs(int p0)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-
-        [Then(@"big score is set to (.*)")]
-        public void ThenBigScoreIsSetTo(int p0)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Given(@"a big rock is constructed at \((.*), (.*)\)")]
-        public void GivenABigRockIsConstructedAt(int p0, int p1)
-        {
-            ScenarioContext.Current.Pending();
-        }
-
-
-        [When(@"a big frame update happens")]
-        public void WhenABigFrameUpdateHappens()
-        {
-            ScenarioContext.Current.Pending();
         }
 
     }
