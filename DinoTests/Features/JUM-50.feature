@@ -37,7 +37,7 @@ Feature: JUM50
 		Then big score is set to 10
 
 	Scenario: JUM-50 big rock frame update
-		Given a big rock is constructed at (4, 1)
+		Given a big rock constructed at (4, 1)
 		When a big frame update happens
 		Then big Position x is 3
 		And big Position y is 1

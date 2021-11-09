@@ -1,11 +1,9 @@
 ﻿using System;
 
-
-    namespace DinoClassLib
+namespace DinoClassLib
 {
-    public class BigRock : IPiece
-    {
-
+    public class Bird : IPiece { 
+        
         public Position position
         {
             get;
@@ -26,20 +24,22 @@
             get;
         }
 
-        public BigRock(int x, int y)
+        public Bird(int x, int y)
         {
-            position = new Position(x, y);
-            xSize = 1;
-            ySize = 2;
-            pointVal = 10;
-            if (position.getY() != 1 || position.getX() > 50 || position.getX() <= 1)
+            position = new Position(x,y);
+            xSize = 1;//unsure about this, clarify later
+            ySize = 1;
+            pointVal = 20;
+            if(position.getY() < 3 || position.getY() > 4 || position.getX() > 50 || position.getX() <= 1)
             {
                 throw new NotImplementedException();
             }
         }
-        public void onFrameUpdate()
+    public void onFrameUpdate()
         {
             int x = position.getX();//getting the current x value
-            position.setX(x - 1);//assuming bottom left is (0,0)
+            position.setX(x-1);//assuming bottom left is (0,0)
+
         }
-    } }
+    }
+}

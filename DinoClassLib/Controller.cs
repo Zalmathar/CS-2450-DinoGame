@@ -72,12 +72,12 @@ namespace DinoClassLib
             //1-50 Chance of the obstacle being a small rock
             if (RNG.Next(50) == 1)
             {
-                Obstacles.Add(new SmallRock(displayXsize, 0));
+                Obstacles.Add(new SmallRock(displayXsize, 1));
             } 
             //1-75 Chance of the obstacle being a large rock
             else if (RNG.Next(75) == 1)
             {
-                Obstacles.Add(new BigRock(displayXsize, 0));
+                Obstacles.Add(new BigRock(displayXsize, 1));
             }
             //1-100 Chance of the obstacle being a bird
             else if (RNG.Next(100) == 1)
