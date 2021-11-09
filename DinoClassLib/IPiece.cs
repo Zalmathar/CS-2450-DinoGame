@@ -180,7 +180,7 @@ namespace DinoClassLib
             xSize = 1;
             ySize = 2;
             pointVal = 0;
-            if (position.getY() != 1 || position.getX() != 1)
+            if (position.getY() != 3 || position.getX() != 1)
             {
                 throw new NotImplementedException();
             }
