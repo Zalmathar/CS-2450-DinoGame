@@ -99,7 +99,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc_.Add("bigrock", new BigRock(x, y));
+                sc_.Add("Bigrock", new BigRock(x, y));
             }
             catch (Exception e)
             {
@@ -111,7 +111,7 @@ namespace DinoTests.Steps
         [Then(@"big Position x is (.*)")]
         public void ThenBigPositionXIs(int p0)
         {
-            sc_["bigrock"].As<BigRock>().position.getX().Should().Be(p0);
+            sc_["Bigrock"].As<BigRock>().position.getX().Should().Be(p0);
         }
 
         [Then(@"big Position y is (.*)")]
@@ -138,7 +138,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc_.Add("bigrock", new BigRock(p0, p1));
+                sc_.Add("Bigrock", new BigRock(p0, p1));
             }
             catch (Exception e)
             {
@@ -168,6 +168,8 @@ namespace DinoTests.Steps
                 sc_.Add("Exception", e);
             }
         }
+
+
         [Then(@"bird Position x is (.*)")]
         public void ThenBirdPositionXIs(int p0)
         {
@@ -204,6 +206,65 @@ namespace DinoTests.Steps
                 sc_.Add("Exception", e);
             }
         }
+
+
+        [Given(@"a player at \((.*), (.*)\)")]
+        public void GivenAPlayerAt(int p0, int p1)
+        {
+            x = p0;
+            y = p1;
+        }
+
+        [When(@"a player is constructed")]
+        public void WhenAPlayerIsConstructed()
+        {
+            try
+            {
+                sc_.Add("player", new Player(x, y));
+            }
+            catch (Exception e)
+            {
+                sc_.Add("Exception", e);
+            }
+        }
+        [Then(@"player Position x is (.*)")]
+        public void ThenPlayerPositionXIs(int p0)
+        {
+            sc_["player"].As<Player>().position.getX().Should().Be(p0);
+        }
+
+        [Then(@"player Position y is (.*)")]
+        public void ThenPlayerPositionYIs(int p0)
+        {
+            sc_["player"].As<Player>().position.getY().Should().Be(p0);
+        }
+
+        [Then(@"player score is set to (.*)")]
+        public void ThenPlayerScoreIsSetTo(int p0)
+        {
+            sc_["player"].As<Player>().pointVal.Should().Be(p0);
+        }
+
+        [Given(@"a player constructed at \((.*), (.*)\)")]
+        public void GivenAPlayerConstructedAt(int p0, int p1)
+        {
+            try
+            {
+                sc_.Add("player", new Player(p0, p1));
+            }
+            catch (Exception e)
+            {
+                sc_.Add("Exception", e);
+            }
+        }
+
+
+        [When(@"a player frame update happens")]
+        public void WhenAPlayerFrameUpdateHappens()
+        {
+            sc_["player"].As<Player>().onFrameUpdate();
+        }
+
 
     }
 }
