@@ -1,10 +1,10 @@
-﻿/*using System;
+﻿using System;
 
-namespace DinoClassLib
+
+    namespace DinoClassLib
 {
-
-	public class BigRock
-	{
+    public class BigRock : IPiece
+    {
 
         public Position position
         {
@@ -26,9 +26,9 @@ namespace DinoClassLib
             get;
         }
 
-        public BigRock(Position po)
-		{
-            position = po;
+        public BigRock(int x, int y)
+        {
+            position = new Position(x, y);
             xSize = 1;
             ySize = 2;
             pointVal = 10;
@@ -37,7 +37,9 @@ namespace DinoClassLib
                 throw new NotImplementedException();
             }
         }
-	}
-
-}
-*/
+        public void onFrameUpdate()
+        {
+            int x = position.getX();//getting the current x value
+            position.setX(x - 1);//assuming bottom left is (0,0)
+        }
+    } }
