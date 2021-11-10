@@ -270,7 +270,8 @@ namespace DinoTests.Steps
         [Given(@"there is a controller object")]
         public void GivenThereIsAControllerObject()
         {
-            sc_.Add("controller", new Controller());
+            IO IOdummy = new IO();
+            sc_.Add("controller", new Controller(IOdummy));
         }
 
         [Given(@"there is a small rock located at \((.*), (.*)\)")]

@@ -15,7 +15,7 @@ namespace DinoClassLib
         public bool Jumpinfo = false;// dummy value until IO is implemented
         // Holds a List of all of the obstacles that are on screen
         public List<IPiece> Obstacles { get; set;}
-        
+        public IO io {private get; set;}
 
         // Represents the current score the player of the game has achieved. 
         private int score;
@@ -33,15 +33,28 @@ namespace DinoClassLib
 
 
         // Constructs the starting state of the game.
-        public Controller()
+        public Controller(IO io)
         {
            Obstacles = new List<IPiece>();
             // TODO: Start the game in the pre game state, Create the player, and let the IO render the screen. When one of the jump keys is received start the game.
+           this.gameState = status.pre;
+           this.io = io;
+
         }
 
         // Generates a new game state representing the next frame. 
         public void FrameUpdate()
         {
+            //IF the game is not running, render the screen, if input is recieved change the game state to start, but do nothing else.. 
+            if(gameState != status.running) {
+                IOReturner ioResult = io.render(this);
+                if (ioResult.inputDetected)
+                {
+                    gameState = status.running;
+                }
+                return;
+               }
+
             int[] temp = new int[1];//to be replaced once delete obstacle implemented
             player.onFrameUpdate(); // Want to update player before the pieces for CheckCollision to work
             foreach(IPiece piece in Obstacles)
@@ -58,9 +71,10 @@ namespace DinoClassLib
            // CheckCollision();
             //DeleteObstacle(temp);
 
-            //MakeObstacle();
+            MakeObstacle();
             //Unsure if this next part is my job
             // TODO: Display the game state to the user.
+            io.render(this);
             
         }
 
