@@ -12,7 +12,7 @@ namespace DinoClassLib
         // Represents the player
         public Player player = new Player(3, 1);
 
-        public bool Jumpinfo = false;// the IO sets it to true if a jump signal is detected
+        public bool Jumpinfo = false;// dummy value until IO is implemented
         // Holds a List of all of the obstacles that are on screen
         public List<IPiece> Obstacles { get; set;}
         
@@ -102,6 +102,7 @@ namespace DinoClassLib
 
         private void Playerjump()
         {
+            //replace Jumpinfo with IOreturnObj.input when it's done.
             player.IsJumping = Jumpinfo;
             Jumpinfo = false;
         }
