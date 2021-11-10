@@ -266,5 +266,74 @@ namespace DinoTests.Steps
         }
 
 
+        //frame update tests
+        [Given(@"there is a controller object")]
+        public void GivenThereIsAControllerObject()
+        {
+            sc_.Add("controller", new Controller());
+        }
+
+        [Given(@"there is a small rock located at \((.*), (.*)\)")]
+        public void GivenThereIsASmallRockLocatedAt(int p0, int p1)
+        {
+            sc_["controller"].As<Controller>().Obstacles.Add(new SmallRock(p0, p1));
+        }
+
+        [Given(@"there is a player located at \((.*), (.*)\)")]
+        public void GivenThereIsAPlayerLocatedAt(int p0, int p1)
+        {
+            sc_["controller"].As<Controller>().player.position.setX(p0);
+            sc_["controller"].As<Controller>().player.position.setY(p1);
+        }
+
+        [When(@"the next frame cycle happens")]
+        public void WhenTheNextFrameCycleHappens()
+        {
+            sc_["controller"].As<Controller>().FrameUpdate();
+        }
+
+        [Then(@"the player position is at \((.*), (.*)\)")]
+        public void ThenThePlayerPositionIsAt(int p0, int p1)
+        {
+            sc_["controller"].As<Controller>().player.position.getX().Should().Be(p0);
+            sc_["controller"].As<Controller>().player.position.getY().Should().Be(p1);
+        }
+
+        [Then(@"the small rock position is at \((.*), (.*)\)")]
+        public void ThenTheSmallRockPositionIsAt(int p0, int p1)
+        {
+            sc_["controller"].As<Controller>().Obstacles[0].position.getX().Should().Be(p0);
+            sc_["controller"].As<Controller>().Obstacles[0].position.getY().Should().Be(p1);
+        }
+
+        [Given(@"there is a large rock located at \((.*), (.*)\)")]
+        public void GivenThereIsALargeRockLocatedAt(int p0, int p1)
+        {
+            sc_["controller"].As<Controller>().Obstacles.Add(new BigRock(p0, p1));
+        }
+
+        [Then(@"the large rock position is at \((.*), (.*)\)")]
+        public void ThenTheLargeRockPositionIsAt(int p0, int p1)
+        {
+            sc_["controller"].As<Controller>().Obstacles[0].position.getX().Should().Be(p0);
+            sc_["controller"].As<Controller>().Obstacles[0].position.getY().Should().Be(p1);
+        }
+
+        [Given(@"there is a bird located at \((.*), (.*)\)")]
+        public void GivenThereIsABirdLocatedAt(int p0, int p1)
+        {
+            sc_["controller"].As<Controller>().Obstacles.Add(new Bird(p0, p1));
+        }
+
+        [Then(@"the bird position is at \((.*), (.*)\)")]
+        public void ThenTheBirdPositionIsAt(int p0, int p1)
+        {
+            sc_["controller"].As<Controller>().Obstacles[0].position.getX().Should().Be(p0);
+            sc_["controller"].As<Controller>().Obstacles[0].position.getY().Should().Be(p1);
+        }
+
+
+
+
     }
 }
