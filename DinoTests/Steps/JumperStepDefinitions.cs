@@ -207,7 +207,7 @@ namespace DinoTests.Steps
             }
         }
 
-
+        //player tests
         [Given(@"a player at \((.*), (.*)\)")]
         public void GivenAPlayerAt(int p0, int p1)
         {
@@ -330,6 +330,18 @@ namespace DinoTests.Steps
         {
             sc_["controller"].As<Controller>().Obstacles[0].position.getX().Should().Be(p0);
             sc_["controller"].As<Controller>().Obstacles[0].position.getY().Should().Be(p1);
+        }
+
+        [Given(@"player is jumping")]
+        public void GivenPlayerIsJumping()
+        {
+            sc_["player"].As<Player>().IsJumping = true;
+        }
+
+        [When(@"player jumps again")]
+        public void WhenPlayerJumpsAgain()
+        {
+            sc_["player"].As<Player>().IsJumping = true;
         }
 
 
