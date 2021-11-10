@@ -48,7 +48,7 @@ namespace DinoClassLib
                 piece.onFrameUpdate();
 
             }
-            //Playerjump();
+            Playerjump();
             player.onFrameUpdate();
            // CheckCollision();
             //DeleteObstacle(temp);
