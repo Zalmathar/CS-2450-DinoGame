@@ -367,12 +367,6 @@ namespace DinoTests.Steps
             sc_["controller"].As<Controller>().Score.Should().Be(p0);
         }
 
-        [Then(@"no collision is detected")]
-        public void ThenNoCollisionIsDetected()
-        {
-            ScenarioContext.Current.Pending();
-            //sc_["controller"].As<Controller>().
-        }
 
         [Then(@"score remains the same")]
         public void ThenScoreRemainsTheSame()
