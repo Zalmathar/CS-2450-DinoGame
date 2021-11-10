@@ -59,11 +59,24 @@ namespace DinoClassLib
             
         }
 
-        // Checks each obstacle agains the players position to determin if a collision has been detected.
-        private bool CheckCollision()
+        // Checks an obstacle against the players position to determin if a collision has been detected.
+        private bool CheckCollision(IPiece obstacle)
         {
             // TODO: Check each obstacle position and size to determin if the player has collided with an object.
             // TODO: If a collision has been detected return true, else return false.
+
+            // Check to see if the obstacle is not equal to x
+            if (obstacle.position.getX() != player.position.getX())
+            {   
+                return false;
+            }
+            else
+            {
+                // Figure out the upper bound and lower bound for player
+                
+                // FIgure out the upper and lower bound for the obstacle
+                // Compare the two bounds to see if they intersect
+            }
             throw new NotImplementedException();
         }
 
