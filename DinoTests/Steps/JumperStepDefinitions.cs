@@ -345,6 +345,41 @@ namespace DinoTests.Steps
         }
 
 
+        // Score test cases
+
+
+        [When(@"the next frame cycle happens\.")]
+        public void WhenTheNextFrameCycleHappens_()
+        {
+            sc_.Add("controller", new Controller());
+            sc_["controller"].As<Controller>().FrameUpdate();
+        }
+
+        [Then(@"The score increases by (.*) points")]
+        public void ThenTheScoreIncreasesByPoints(int p0)
+        {
+            sc_["controller"].As<Controller>().Score.Should().Be(p0);
+        }
+
+        [Then(@"no collision is detected")]
+        public void ThenNoCollisionIsDetected()
+        {
+            ScenarioContext.Current.Pending();
+            //sc_["controller"].As<Controller>().
+        }
+
+        [Then(@"collision is detected")]
+        public void ThenCollisionIsDetected()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+        [Then(@"score remains the same")]
+        public void ThenScoreRemainsTheSame()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
 
 
     }
