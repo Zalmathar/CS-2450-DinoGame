@@ -356,5 +356,11 @@ namespace DinoTests.Steps
         {
             sc_.Get<Controller>("controller").gameState.Should().Be(Controller.status.dead);
         }
+      
+        [Then(@"an obstacle is removed from the screen")]
+        public void AnObstacleIsRemovedFromTheScreen()
+        {
+            sc_.Get<Controller>("controller").Obstacles[0].Should().Be(null);
+        }
     }
 }
