@@ -102,6 +102,7 @@ namespace DinoClassLib
                         return true;
                     }
                 }
+                return false;
             }
             throw new Exception("CheckCollision Failed");
         }
