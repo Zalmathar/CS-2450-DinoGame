@@ -276,12 +276,20 @@ namespace DinoTests.Steps
         [Given(@"there is a small rock located at \((.*), (.*)\)")]
         public void GivenThereIsASmallRockLocatedAt(int p0, int p1)
         {
+            if (!sc_.ContainsKey("controller"))
+            {
+                sc_.Add("controller", new Controller());
+            }
             sc_["controller"].As<Controller>().Obstacles.Add(new SmallRock(p0, p1));
         }
 
         [Given(@"there is a player located at \((.*), (.*)\)")]
         public void GivenThereIsAPlayerLocatedAt(int p0, int p1)
         {
+            if (!sc_.ContainsKey("controller"))
+            {
+                sc_.Add("controller", new Controller());
+            }
             sc_["controller"].As<Controller>().player.position.setX(p0);
             sc_["controller"].As<Controller>().player.position.setY(p1);
         }
@@ -309,6 +317,10 @@ namespace DinoTests.Steps
         [Given(@"there is a large rock located at \((.*), (.*)\)")]
         public void GivenThereIsALargeRockLocatedAt(int p0, int p1)
         {
+            if (!sc_.ContainsKey("controller"))
+            {
+                sc_.Add("controller", new Controller());
+            }
             sc_["controller"].As<Controller>().Obstacles.Add(new BigRock(p0, p1));
         }
 
@@ -322,6 +334,10 @@ namespace DinoTests.Steps
         [Given(@"there is a bird located at \((.*), (.*)\)")]
         public void GivenThereIsABirdLocatedAt(int p0, int p1)
         {
+            if (!sc_.ContainsKey("controller"))
+            {
+                sc_.Add("controller", new Controller());
+            }
             sc_["controller"].As<Controller>().Obstacles.Add(new Bird(p0, p1));
         }
 
@@ -353,11 +369,9 @@ namespace DinoTests.Steps
 
         // Score test cases
 
-
         [When(@"the next frame cycle happens\.")]
         public void WhenTheNextFrameCycleHappens_()
         {
-            sc_.Add("controller", new Controller());
             sc_["controller"].As<Controller>().FrameUpdate();
         }
 
@@ -371,9 +385,10 @@ namespace DinoTests.Steps
         [Then(@"score remains the same")]
         public void ThenScoreRemainsTheSame()
         {
-            ScenarioContext.Current.Pending();
+            sc_["controller"].As<Controller>().Score.Should().Be(0);
         }
 
+        //collision and obstacle removal
 
         [Then(@"collision is detected")]
         public void ThenCollisionIsDetected()

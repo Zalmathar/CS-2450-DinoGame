@@ -49,22 +49,33 @@ namespace DinoClassLib
         // Generates a new game state representing the next frame. 
         public void FrameUpdate()
         {
+            bool dodge = false;
             List<int> delList = new List<int>();//to be replaced once delete obstacle implemented
             player.onFrameUpdate(); // Want to update player before the pieces for CheckCollision to work
-            for(int i = 0; i < Obstacles.Count; i++)
+            for (int i = 0; i < Obstacles.Count; i++)
             {
                 IPiece piece = Obstacles[i];
                 piece.onFrameUpdate();
-                if(CheckCollision(piece) == true)
+                if (CheckCollision(piece) == true)
                 {
                     gameState = status.dead;
                     // Display the end game card
+                }
+                if (piece.position.getX() == 3 && !CheckCollision(piece))
+                {
+                    score += piece.pointVal; //increase the score for dodging an obstacle
+                    dodge = true;
                 }
                 if(piece.position.getX() < 1)
                 {
                     delList.Add(i); // Mark the obstacle to be deleted
                 }
             }
+            if (!dodge)
+            {
+                score++;
+            }
+                
             Playerjump();
            // CheckCollision();
             DeleteObstacle(delList);
