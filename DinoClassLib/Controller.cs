@@ -43,13 +43,18 @@ namespace DinoClassLib
         public void FrameUpdate()
         {
             int[] temp = new int[1];//to be replaced once delete obstacle implemented
+            player.onFrameUpdate(); // Want to update player before the pieces for CheckCollision to work
             foreach(IPiece piece in Obstacles)
             {
                 piece.onFrameUpdate();
+                if(CheckCollision(piece) == true)
+                {
+                    gameState = status.dead;
+                    // Display the end game card
+                }
 
             }
             Playerjump();
-            player.onFrameUpdate();
            // CheckCollision();
             //DeleteObstacle(temp);
 
@@ -60,25 +65,24 @@ namespace DinoClassLib
         }
 
         // Checks an obstacle against the players position to determin if a collision has been detected.
-        private bool CheckCollision(IPiece obstacle)
+        // When this returns false, in frame update, we will want to change the games running state
+        private bool CheckCollision(IPiece _obstacle)
         {
-            // TODO: Check each obstacle position and size to determin if the player has collided with an object.
-            // TODO: If a collision has been detected return true, else return false.
-
-            // Check to see if the obstacle is not equal to x
-            if (obstacle.position.getX() != player.position.getX())
+            if (_obstacle.position.getX() != player.position.getX())
             {   
                 return false;
             }
             else
             {
-                return false; // fail any tests for now
-                // Figure out the upper bound and lower bound for player
-
-                // FIgure out the upper and lower bound for the obstacle
-                // Compare the two bounds to see if they intersect
+                for(int i = 0; i < _obstacle.ySize; i++)
+                {
+                    if (player.position.getY() == _obstacle.position.getY() + i || player.position.getY() + 1 == _obstacle.position.getY() + i)
+                    {
+                        return true;
+                    }
+                }
             }
-            throw new NotImplementedException();
+            throw new Exception("CheckCollision Failed");
         }
 
         // Randomly creates obstacles that are then stored in the obsticale list. Has a chance of not creating any obstical's
