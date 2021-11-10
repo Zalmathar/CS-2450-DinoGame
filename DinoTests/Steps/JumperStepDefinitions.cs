@@ -315,7 +315,8 @@ namespace DinoTests.Steps
         [Then(@"the large rock position is at \((.*), (.*)\)")]
         public void ThenTheLargeRockPositionIsAt(int p0, int p1)
         {
-            throw new PendingStepException();
+            sc_["controller"].As<Controller>().Obstacles[0].position.getX().Should().Be(p0);
+            sc_["controller"].As<Controller>().Obstacles[0].position.getY().Should().Be(p1);
         }
 
         [Given(@"there is a bird located at \((.*), (.*)\)")]

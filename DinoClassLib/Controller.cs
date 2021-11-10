@@ -35,6 +35,7 @@ namespace DinoClassLib
         // Constructs the starting state of the game.
         public Controller()
         {
+           Obstacles = new List<IPiece>();
             // TODO: Start the game in the pre game state, Create the player, and let the IO render the screen. When one of the jump keys is received start the game.
         }
 
@@ -47,12 +48,12 @@ namespace DinoClassLib
                 piece.onFrameUpdate();
 
             }
-            Playerjump();
+            //Playerjump();
             player.onFrameUpdate();
-            CheckCollision();
-            DeleteObstacle(temp);
+           // CheckCollision();
+            //DeleteObstacle(temp);
 
-            MakeObstacle();
+            //MakeObstacle();
             //Unsure if this next part is my job
             // TODO: Display the game state to the user.
             
