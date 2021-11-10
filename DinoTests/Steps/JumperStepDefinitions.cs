@@ -344,6 +344,12 @@ namespace DinoTests.Steps
             sc_["player"].As<Player>().IsJumping = true;
         }
 
+        [Then(@"no collision is detected")]
+        public void ThenNoCollisionIsDetected()
+        {
+            sc_.Get<Controller>("controller").gameState.Should().Be(Controller.status.running);
+        }
+
 
         // Score test cases
 
@@ -368,12 +374,6 @@ namespace DinoTests.Steps
             //sc_["controller"].As<Controller>().
         }
 
-        [Then(@"collision is detected")]
-        public void ThenCollisionIsDetected()
-        {
-            ScenarioContext.Current.Pending();
-        }
-
         [Then(@"score remains the same")]
         public void ThenScoreRemainsTheSame()
         {
@@ -381,6 +381,17 @@ namespace DinoTests.Steps
         }
 
 
+        [Then(@"collision is detected")]
+        public void ThenCollisionIsDetected()
+        {
+            sc_.Get<Controller>("controller").gameState.Should().Be(Controller.status.dead);
+        }
 
+
+        [Then(@"an obstacle is removed from the screen")]
+        public void AnObstacleIsRemovedFromTheScreen()
+        {
+            sc_.Get<Controller>("controller").Obstacles[0].Should().Be(null);
+        }
     }
 }

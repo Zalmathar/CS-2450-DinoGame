@@ -28,14 +28,14 @@ namespace DinoClassLib
         //ToDo: represesnts the display size in the x direction. should be set on frame update by the returned value of the IO
         private int displayXsize;
         // Represents the states the game can be in
-        enum status
+        public enum status
         {
             pre, // In the pre game state, a screen should be generated that has the player and no other objects. When one of the jump keys in pressed. The game starts
             running, // In the running state, The player is able to jump, obsticals get randomly generated and move toward the left of the screen.
             dead // In the dead state. The total score of the game is showed. When one of the jump keys is pressed. The game re-starts
         }
         // Represents the current state of the game
-        private status gameState;
+        public status gameState;
 
 
         // Constructs the starting state of the game.
@@ -49,29 +49,50 @@ namespace DinoClassLib
         // Generates a new game state representing the next frame. 
         public void FrameUpdate()
         {
-            int[] temp = new int[1];//to be replaced once delete obstacle implemented
-            foreach(IPiece piece in Obstacles)
+            List<int> delList = new List<int>();//to be replaced once delete obstacle implemented
+            player.onFrameUpdate(); // Want to update player before the pieces for CheckCollision to work
+            for(int i = 0; i < Obstacles.Count; i++)
             {
+                IPiece piece = Obstacles[i];
                 piece.onFrameUpdate();
-
+                if(CheckCollision(piece) == true)
+                {
+                    gameState = status.dead;
+                    // Display the end game card
+                }
+                if(piece.position.getX() < 1)
+                {
+                    delList.Add(i); // Mark the obstacle to be deleted
+                }
             }
             Playerjump();
-            player.onFrameUpdate();
            // CheckCollision();
-            //DeleteObstacle(temp);
-
-            //MakeObstacle();
+            DeleteObstacle(delList);
+            // MakeObstacle();
             //Unsure if this next part is my job
             // TODO: Display the game state to the user.
             
         }
 
-        // Checks each obstacle agains the players position to determin if a collision has been detected.
-        private bool CheckCollision()
+        // Checks an obstacle against the players position to determin if a collision has been detected.
+        // When this returns false, in frame update, we will want to change the games running state
+        private bool CheckCollision(IPiece _obstacle)
         {
-            // TODO: Check each obstacle position and size to determin if the player has collided with an object.
-            // TODO: If a collision has been detected return true, else return false.
-            throw new NotImplementedException();
+            if (_obstacle.position.getX() != player.position.getX())
+            {   
+                return false;
+            }
+            else
+            {
+                for(int i = 0; i < _obstacle.ySize; i++)
+                {
+                    if (player.position.getY() == _obstacle.position.getY() + i || player.position.getY() + 1 == _obstacle.position.getY() + i)
+                    {
+                        return true;
+                    }
+                }
+            }
+            throw new Exception("CheckCollision Failed");
         }
 
         // Randomly creates obstacles that are then stored in the obsticale list. Has a chance of not creating any obstical's
@@ -97,14 +118,17 @@ namespace DinoClassLib
             }   
         }
         // When an obsticale has reached the minimum it can be (Far left of the view). Remove each obsticale that has reached the end of the screen
-        private void DeleteObstacle(int[] delThese)
+        private void DeleteObstacle(List<int> delThese)
         {
             // TODO: Delete each obstacle that is specified by delThese
             //To do this im thinking of in this iteration loop, store the index of each item that needs to be deleted. 
                  // Than deleting them from the largest index to the smallest. IE.If the obstacles stored at index 1, 3, and 10 need to be deleted. Delete them in order 10, 3, then 1.
                  // Deleteing them in reverse would preserve the integrity of the list as we delete multiple objects from it.Minimizing the amount of times we have to iterate through our obstacle list.
                 //  We would then pass this array of indexes to be deleted to our delete method that would go in and delete them. -- Tanis Olesen
-            throw new NotImplementedException();
+            for(int i = delThese.Count; i > 0; i--)
+            {
+                Obstacles.RemoveAt(delThese[i]);
+            }
         }
 
         private void Playerjump()
