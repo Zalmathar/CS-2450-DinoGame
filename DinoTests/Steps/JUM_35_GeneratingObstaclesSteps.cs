@@ -20,7 +20,8 @@ namespace DinoTests.Steps
         [Given(@"a controller that can create objects on frame update")]
         public void GivenAControllerThatCanCreateObjectsOnFrameUpdate()
         {
-            sc_.Add("Controller", new Controller());
+            IO IOdummy = new IO();
+            sc_.Add("Controller", new Controller(IOdummy));
         }
         
         

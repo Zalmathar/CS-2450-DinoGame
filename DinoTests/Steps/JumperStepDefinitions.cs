@@ -270,26 +270,19 @@ namespace DinoTests.Steps
         [Given(@"there is a controller object")]
         public void GivenThereIsAControllerObject()
         {
-            sc_.Add("controller", new Controller());
+            IO IOdummy = new IO();
+            sc_.Add("controller", new Controller(IOdummy));
         }
 
         [Given(@"there is a small rock located at \((.*), (.*)\)")]
         public void GivenThereIsASmallRockLocatedAt(int p0, int p1)
         {
-            if (!sc_.ContainsKey("controller"))
-            {
-                sc_.Add("controller", new Controller());
-            }
             sc_["controller"].As<Controller>().Obstacles.Add(new SmallRock(p0, p1));
         }
 
         [Given(@"there is a player located at \((.*), (.*)\)")]
         public void GivenThereIsAPlayerLocatedAt(int p0, int p1)
         {
-            if (!sc_.ContainsKey("controller"))
-            {
-                sc_.Add("controller", new Controller());
-            }
             sc_["controller"].As<Controller>().player.position.setX(p0);
             sc_["controller"].As<Controller>().player.position.setY(p1);
         }
@@ -317,10 +310,6 @@ namespace DinoTests.Steps
         [Given(@"there is a large rock located at \((.*), (.*)\)")]
         public void GivenThereIsALargeRockLocatedAt(int p0, int p1)
         {
-            if (!sc_.ContainsKey("controller"))
-            {
-                sc_.Add("controller", new Controller());
-            }
             sc_["controller"].As<Controller>().Obstacles.Add(new BigRock(p0, p1));
         }
 
@@ -334,10 +323,6 @@ namespace DinoTests.Steps
         [Given(@"there is a bird located at \((.*), (.*)\)")]
         public void GivenThereIsABirdLocatedAt(int p0, int p1)
         {
-            if (!sc_.ContainsKey("controller"))
-            {
-                sc_.Add("controller", new Controller());
-            }
             sc_["controller"].As<Controller>().Obstacles.Add(new Bird(p0, p1));
         }
 
@@ -366,37 +351,12 @@ namespace DinoTests.Steps
             sc_.Get<Controller>("controller").gameState.Should().Be(Controller.status.running);
         }
 
-
-        // Score test cases
-
-        [When(@"the next frame cycle happens\.")]
-        public void WhenTheNextFrameCycleHappens_()
-        {
-            sc_["controller"].As<Controller>().FrameUpdate();
-        }
-
-        [Then(@"The score increases by (.*) points")]
-        public void ThenTheScoreIncreasesByPoints(int p0)
-        {
-            sc_["controller"].As<Controller>().Score.Should().Be(p0);
-        }
-
-
-        [Then(@"score remains the same")]
-        public void ThenScoreRemainsTheSame()
-        {
-            sc_["controller"].As<Controller>().Score.Should().Be(0);
-        }
-
-        //collision and obstacle removal
-
         [Then(@"collision is detected")]
         public void ThenCollisionIsDetected()
         {
             sc_.Get<Controller>("controller").gameState.Should().Be(Controller.status.dead);
         }
-
-
+      
         [Then(@"an obstacle is removed from the screen")]
         public void AnObstacleIsRemovedFromTheScreen()
         {
