@@ -350,11 +350,43 @@ namespace DinoTests.Steps
             sc_.Get<Controller>("controller").gameState.Should().Be(Controller.status.running);
         }
 
+
+        // Score test cases
+
+
+        [When(@"the next frame cycle happens\.")]
+        public void WhenTheNextFrameCycleHappens_()
+        {
+            sc_.Add("controller", new Controller());
+            sc_["controller"].As<Controller>().FrameUpdate();
+        }
+
+        [Then(@"The score increases by (.*) points")]
+        public void ThenTheScoreIncreasesByPoints(int p0)
+        {
+            sc_["controller"].As<Controller>().Score.Should().Be(p0);
+        }
+
+        [Then(@"no collision is detected")]
+        public void ThenNoCollisionIsDetected()
+        {
+            ScenarioContext.Current.Pending();
+            //sc_["controller"].As<Controller>().
+        }
+
+        [Then(@"score remains the same")]
+        public void ThenScoreRemainsTheSame()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
         [Then(@"collision is detected")]
         public void ThenCollisionIsDetected()
         {
             sc_.Get<Controller>("controller").gameState.Should().Be(Controller.status.dead);
         }
+
 
         [Then(@"an obstacle is removed from the screen")]
         public void AnObstacleIsRemovedFromTheScreen()

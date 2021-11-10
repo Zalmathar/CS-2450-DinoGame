@@ -15,10 +15,16 @@ namespace DinoClassLib
         public bool Jumpinfo = false;// dummy value until IO is implemented
         // Holds a List of all of the obstacles that are on screen
         public List<IPiece> Obstacles { get; set;}
-        
+
 
         // Represents the current score the player of the game has achieved. 
         private int score;
+        public int Score
+        {
+            get { return score; }
+            set { score = value; }
+        }
+
         //ToDo: represesnts the display size in the x direction. should be set on frame update by the returned value of the IO
         private int displayXsize;
         // Represents the states the game can be in
@@ -36,6 +42,7 @@ namespace DinoClassLib
         public Controller()
         {
            Obstacles = new List<IPiece>();
+           score = 0;
             // TODO: Start the game in the pre game state, Create the player, and let the IO render the screen. When one of the jump keys is received start the game.
         }
 
