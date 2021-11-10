@@ -27,7 +27,7 @@ Feature: JUM31
 	@JUM31_Collision
 	Scenario: JUM31 Large rock collides with player
 		Given there is a large rock located at (4, 1)
-		And there is player located at (3, 1)
+		And there is a player located at (3, 1)
 		When the next frame cycle happens
 		Then collision is detected
 	
@@ -47,7 +47,7 @@ Feature: JUM31
 	@JUM31_Collision
 	Scenario: JUM31 Player passes over large rock
 		Given there is a large rock located at (4, 1)
-		And there is aplayer located at (3, 3)
+		And there is a player located at (3, 3)
 		When the next frame cycle happens
 		Then no collision is detected
 

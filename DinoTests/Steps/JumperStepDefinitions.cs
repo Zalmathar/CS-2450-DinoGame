@@ -344,7 +344,17 @@ namespace DinoTests.Steps
             sc_["player"].As<Player>().IsJumping = true;
         }
 
+        [Then(@"no collision is detected")]
+        public void ThenNoCollisionIsDetected()
+        {
+            sc_.Pending();
+        }
 
+        [Then(@"collision is detected")]
+        public void ThenCollisionIsDetected()
+        {
+            sc_.Pending();
+        }
 
 
     }

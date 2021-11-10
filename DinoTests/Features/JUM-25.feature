@@ -20,7 +20,7 @@ Feature: JUM25
 	Scenario: JUM25 Small rock No collision 8 Points added
 		Given there is a small rock located at (4, 1)
 		And there is a player located at (3, 2)
-		When the next fram cycle happens.
+		When the next frame cycle happens.
 		Then no collision is detected
 		And The score increases by 8 points
 
@@ -36,7 +36,7 @@ Feature: JUM25
 	Scenario: JUM25 Large rock Collision No points added
 		Given there is a large rock located at (4, 1)
 		And there is a player located at (3, 1)
-		When the next fram cycle happens.
+		When the next frame cycle happens.
 		Then collision is detected
 		And score remains the same
 

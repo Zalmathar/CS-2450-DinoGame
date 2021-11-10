@@ -72,8 +72,9 @@ namespace DinoClassLib
             }
             else
             {
+                return false; // fail any tests for now
                 // Figure out the upper bound and lower bound for player
-                
+
                 // FIgure out the upper and lower bound for the obstacle
                 // Compare the two bounds to see if they intersect
             }
