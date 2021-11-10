@@ -347,15 +347,13 @@ namespace DinoTests.Steps
         [Then(@"no collision is detected")]
         public void ThenNoCollisionIsDetected()
         {
-            sc_.Pending();
+            sc_.Get<Controller>("controller").gameState.Should().Be(Controller.status.running);
         }
 
         [Then(@"collision is detected")]
         public void ThenCollisionIsDetected()
         {
-            sc_.Pending();
+            sc_.Get<Controller>("controller").gameState.Should().Be(Controller.status.dead);
         }
-
-
     }
 }

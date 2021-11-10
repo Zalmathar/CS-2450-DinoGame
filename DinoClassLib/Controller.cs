@@ -22,14 +22,14 @@ namespace DinoClassLib
         //ToDo: represesnts the display size in the x direction. should be set on frame update by the returned value of the IO
         private int displayXsize;
         // Represents the states the game can be in
-        enum status
+        public enum status
         {
             pre, // In the pre game state, a screen should be generated that has the player and no other objects. When one of the jump keys in pressed. The game starts
             running, // In the running state, The player is able to jump, obsticals get randomly generated and move toward the left of the screen.
             dead // In the dead state. The total score of the game is showed. When one of the jump keys is pressed. The game re-starts
         }
         // Represents the current state of the game
-        private status gameState;
+        public status gameState;
 
 
         // Constructs the starting state of the game.
