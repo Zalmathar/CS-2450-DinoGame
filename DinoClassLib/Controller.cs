@@ -126,7 +126,7 @@ namespace DinoClassLib
             throw new Exception("CheckCollision Failed");
         }
 
-        // Randomly creates obstacles that are then stored in the obsticale list. Has a chance of not creating any obstical's
+        // Randomly creates obstacles that are then stored in the obstacle list. Has a chance of not creating any obstacle's
         private void MakeObstacle()
 
         {

@@ -47,6 +47,7 @@ namespace DinoClassLib
         }
         public void onFrameUpdate()
         {
+
             if(jumpstate == 0 && IsJumping)
             {
                 position.setY(2);
