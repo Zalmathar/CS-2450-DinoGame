@@ -30,7 +30,7 @@ namespace DinoClassLib
             xSize = 1;//unsure about this, clarify later
             ySize = 1;
             pointVal = 20;
-            if(position.getY() < 3 || position.getY() > 4 || position.getX() > 50 || position.getX() <= 1)
+            if(position.getY() < 3 || position.getY() > 4 || position.getX() > 200 || position.getX() <= 1)
             {
                 throw new NotImplementedException();
             }
