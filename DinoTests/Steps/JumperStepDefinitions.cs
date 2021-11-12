@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using DinoClassLib;
 using FluentAssertions;
@@ -272,6 +273,7 @@ namespace DinoTests.Steps
         {
             IO IOdummy = new IO();
             sc_.Add("controller", new Controller(IOdummy));
+            sc_["controller"].As<Controller>().gameState = Controller.status.running;
         }
 
         [Given(@"there is a small rock located at \((.*), (.*)\)")]
