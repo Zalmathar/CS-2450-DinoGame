@@ -20,7 +20,7 @@ namespace DinoTests.Steps
         {
             IO IOdummy = new IO();
             sc.Add("controller", new Controller(IOdummy));
-            sc["controller"].As<Controller>().gameState = Controller.status.running;
+            sc.Get<Controller>("controller").gameState = Controller.status.running;
         }
 
         [Given(@"a controller that can create objects on frame update")]
@@ -34,7 +34,7 @@ namespace DinoTests.Steps
         [When(@"the next frame cycle happens")]
         public void WhenTheNextFrameCycleHappens()
         {
-            sc["controller"].As<Controller>().FrameUpdate();
+            sc.Get<Controller>("controller").FrameUpdate();
         }
 
         [When(@"frameUpdate has been called (.*) times")]
@@ -43,7 +43,7 @@ namespace DinoTests.Steps
             sc.Add("numberOfFrames", p0);
             for (int i = 0; i < p0; i++)
             {
-                sc["Controller"].As<Controller>().FrameUpdate();
+                sc.Get<Controller>("controller").FrameUpdate();
             }
         }
 
@@ -78,7 +78,7 @@ namespace DinoTests.Steps
         {
             int numberOfSmallRocks = 0;
             float targetNumber = (float)p0 / 100 * sc["numberOfFrames"].As<int>();
-            sc["Controller"].As<Controller>().Obstacles.ForEach(
+            sc.Get<Controller>("controller").Obstacles.ForEach(
                 delegate (IPiece Obstacle)
                 {
                     if (Obstacle is SmallRock)

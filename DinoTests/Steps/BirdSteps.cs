@@ -18,7 +18,7 @@ namespace DinoTests.Steps
         [Given(@"there is a bird located at \((.*), (.*)\)")]
         public void GivenThereIsABirdLocatedAt(int p0, int p1)
         {
-            sc["controller"].As<Controller>().Obstacles.Add(new Bird(p0, p1));
+            sc.Get<Controller>("controller").Obstacles.Add(new Bird(p0, p1));
         }
 
         [Given(@"a bird at \((.*), (.*)\)")]
@@ -57,32 +57,32 @@ namespace DinoTests.Steps
         [When(@"a bird frame update happens")]
         public void WhenABirdFrameUpdateHappens()
         {
-            sc["bird"].As<Bird>().onFrameUpdate();
+            sc.Get<Bird>("bird").onFrameUpdate();
         }
 
         [Then(@"the bird position is at \((.*), (.*)\)")]
         public void ThenTheBirdPositionIsAt(int p0, int p1)
         {
-            sc["controller"].As<Controller>().Obstacles[0].position.getX().Should().Be(p0);
-            sc["controller"].As<Controller>().Obstacles[0].position.getY().Should().Be(p1);
+            sc.Get<Controller>("controller").Obstacles[0].position.getX().Should().Be(p0);
+            sc.Get<Controller>("controller").Obstacles[0].position.getY().Should().Be(p1);
         }
 
         [Then(@"bird Position x is (.*)")]
         public void ThenBirdPositionXIs(int p0)
         {
-            sc["bird"].As<Bird>().position.getX().Should().Be(p0);
+            sc.Get<Bird>("bird").position.getX().Should().Be(p0);
         }
 
         [Then(@"bird Position y is (.*)")]
         public void ThenBirdPositionYIs(int p0)
         {
-            sc["bird"].As<Bird>().position.getY().Should().Be(p0);
+            sc.Get<Bird>("bird").position.getY().Should().Be(p0);
         }
 
         [Then(@"bird score is set to (.*)")]
         public void ThenBirdScoreIsSetTo(int p0)
         {
-            sc["bird"].As<Bird>().pointVal.Should().Be(p0);
+            sc.Get<Bird>("bird").pointVal.Should().Be(p0);
         }
     }
 }

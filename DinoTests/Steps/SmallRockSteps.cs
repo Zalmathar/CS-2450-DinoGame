@@ -18,7 +18,7 @@ namespace DinoTests.Steps
         [Given(@"there is a small rock located at \((.*), (.*)\)")]
         public void GivenThereIsASmallRockLocatedAt(int p0, int p1)
         {
-            sc["controller"].As<Controller>().Obstacles.Add(new SmallRock(p0, p1));
+            sc.Get<Controller>("controller").Obstacles.Add(new SmallRock(p0, p1));
         }
 
         [Given(@"a small rock at \((.*), (.*)\)")]
@@ -58,32 +58,32 @@ namespace DinoTests.Steps
         [When(@"a frame update happens")]
         public void WhenAFrameUpdateHappens()
         {
-            sc["smallrock"].As<SmallRock>().onFrameUpdate();
+            sc.Get<SmallRock>("smallrock").onFrameUpdate();
         }
 
         [Then(@"the small rock position is at \((.*), (.*)\)")]
         public void ThenTheSmallRockPositionIsAt(int p0, int p1)
         {
-            sc["controller"].As<Controller>().Obstacles[0].position.getX().Should().Be(p0);
-            sc["controller"].As<Controller>().Obstacles[0].position.getY().Should().Be(p1);
+            sc.Get<Controller>("controller").Obstacles[0].position.getX().Should().Be(p0);
+            sc.Get<Controller>("controller").Obstacles[0].position.getY().Should().Be(p1);
         }
         
         [Then(@"Position x is (.*)")]
         public void ThenPositionXIs(int p0)
         {
-            sc["smallrock"].As<SmallRock>().position.getX().Should().Be(p0);
+            sc.Get<SmallRock>("smallrock").position.getX().Should().Be(p0);
         }
 
         [Then(@"Position y is (.*)")]
         public void ThenPositionYIs(int p0)
         {
-            sc["smallrock"].As<SmallRock>().position.getY().Should().Be(p0);
+            sc.Get<SmallRock>("smallrock").position.getY().Should().Be(p0);
         }
 
         [Then(@"score is set to (.*)")]
         public void ThenScoreIsSetTo(int p0)
         {
-            sc["smallrock"].As<SmallRock>().pointVal.Should().Be(p0);
+            sc.Get<SmallRock>("smallrock").pointVal.Should().Be(p0);
         }
 
     }

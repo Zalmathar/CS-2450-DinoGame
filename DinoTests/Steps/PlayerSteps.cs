@@ -18,8 +18,8 @@ namespace DinoTests.Steps
         [Given(@"there is a player located at \((.*), (.*)\)")]
         public void GivenThereIsAPlayerLocatedAt(int p0, int p1)
         {
-            sc["controller"].As<Controller>().player.position.setX(p0);
-            sc["controller"].As<Controller>().player.position.setY(p1);
+            sc.Get<Controller>("controller").player.position.setX(p0);
+            sc.Get<Controller>("controller").player.position.setY(p1);
         }
 
         [Given(@"a player at \((.*), (.*)\)")]
@@ -45,7 +45,7 @@ namespace DinoTests.Steps
         [Given(@"player is jumping")]
         public void GivenPlayerIsJumping()
         {
-            sc["player"].As<Player>().IsJumping = true;
+            sc.Get<Player>("player").IsJumping = true;
         }
 
         [When(@"a player is constructed")]
@@ -64,38 +64,38 @@ namespace DinoTests.Steps
         [When(@"a player frame update happens")]
         public void WhenAPlayerFrameUpdateHappens()
         {
-            sc["player"].As<Player>().onFrameUpdate();
+            sc.Get<Player>("player").onFrameUpdate();
         }
 
         [When(@"player jumps again")]
         public void WhenPlayerJumpsAgain()
         {
-            sc["player"].As<Player>().IsJumping = true;
+            sc.Get<Player>("player").IsJumping = true;
         }
 
         [Then(@"the player position is at \((.*), (.*)\)")]
         public void ThenThePlayerPositionIsAt(int p0, int p1)
         {
-            sc["controller"].As<Controller>().player.position.getX().Should().Be(p0);
-            sc["controller"].As<Controller>().player.position.getY().Should().Be(p1);
+            sc.Get<Controller>("controller").player.position.getX().Should().Be(p0);
+            sc.Get<Controller>("controller").player.position.getY().Should().Be(p1);
         }
 
         [Then(@"player Position x is (.*)")]
         public void ThenPlayerPositionXIs(int p0)
         {
-            sc["player"].As<Player>().position.getX().Should().Be(p0);
+            sc.Get<Player>("player").position.getX().Should().Be(p0);
         }
 
         [Then(@"player Position y is (.*)")]
         public void ThenPlayerPositionYIs(int p0)
         {
-            sc["player"].As<Player>().position.getY().Should().Be(p0);
+            sc.Get<Player>("player").position.getY().Should().Be(p0);
         }
 
         [Then(@"player score is set to (.*)")]
         public void ThenPlayerScoreIsSetTo(int p0)
         {
-            sc["player"].As<Player>().pointVal.Should().Be(p0);
+            sc.Get<Player>("player").pointVal.Should().Be(p0);
         }
     }
 }
