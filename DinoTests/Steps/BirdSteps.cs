@@ -15,6 +15,12 @@ namespace DinoTests.Steps
             sc = scenarioContext;
         }
 
+        [Given(@"there is a bird located at \((.*), (.*)\)")]
+        public void GivenThereIsABirdLocatedAt(int p0, int p1)
+        {
+            sc["controller"].As<Controller>().Obstacles.Add(new Bird(p0, p1));
+        }
+
         [Given(@"a bird at \((.*), (.*)\)")]
         public void GivenABirdAt(int p0, int p1)
         {
@@ -54,6 +60,12 @@ namespace DinoTests.Steps
             sc["bird"].As<Bird>().onFrameUpdate();
         }
 
+        [Then(@"the bird position is at \((.*), (.*)\)")]
+        public void ThenTheBirdPositionIsAt(int p0, int p1)
+        {
+            sc["controller"].As<Controller>().Obstacles[0].position.getX().Should().Be(p0);
+            sc["controller"].As<Controller>().Obstacles[0].position.getY().Should().Be(p1);
+        }
 
         [Then(@"bird Position x is (.*)")]
         public void ThenBirdPositionXIs(int p0)

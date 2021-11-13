@@ -15,6 +15,13 @@ namespace DinoTests.Steps
             sc = scenarioContext;
         }
 
+        [Given(@"there is a player located at \((.*), (.*)\)")]
+        public void GivenThereIsAPlayerLocatedAt(int p0, int p1)
+        {
+            sc["controller"].As<Controller>().player.position.setX(p0);
+            sc["controller"].As<Controller>().player.position.setY(p1);
+        }
+
         [Given(@"a player at \((.*), (.*)\)")]
         public void GivenAPlayerAt(int p0, int p1)
         {
@@ -34,6 +41,12 @@ namespace DinoTests.Steps
                 sc.Add("Exception", e);
             }
         }
+        
+        [Given(@"player is jumping")]
+        public void GivenPlayerIsJumping()
+        {
+            sc["player"].As<Player>().IsJumping = true;
+        }
 
         [When(@"a player is constructed")]
         public void WhenAPlayerIsConstructed()
@@ -52,6 +65,19 @@ namespace DinoTests.Steps
         public void WhenAPlayerFrameUpdateHappens()
         {
             sc["player"].As<Player>().onFrameUpdate();
+        }
+
+        [When(@"player jumps again")]
+        public void WhenPlayerJumpsAgain()
+        {
+            sc["player"].As<Player>().IsJumping = true;
+        }
+
+        [Then(@"the player position is at \((.*), (.*)\)")]
+        public void ThenThePlayerPositionIsAt(int p0, int p1)
+        {
+            sc["controller"].As<Controller>().player.position.getX().Should().Be(p0);
+            sc["controller"].As<Controller>().player.position.getY().Should().Be(p1);
         }
 
         [Then(@"player Position x is (.*)")]

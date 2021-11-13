@@ -15,6 +15,12 @@ namespace DinoTests.Steps
             sc = scenarioContext;
         }
 
+        [Given(@"there is a small rock located at \((.*), (.*)\)")]
+        public void GivenThereIsASmallRockLocatedAt(int p0, int p1)
+        {
+            sc["controller"].As<Controller>().Obstacles.Add(new SmallRock(p0, p1));
+        }
+
         [Given(@"a small rock at \((.*), (.*)\)")]
         public void GivenASmallRockAt(int p0, int p1)
         {
@@ -55,7 +61,13 @@ namespace DinoTests.Steps
             sc["smallrock"].As<SmallRock>().onFrameUpdate();
         }
 
-
+        [Then(@"the small rock position is at \((.*), (.*)\)")]
+        public void ThenTheSmallRockPositionIsAt(int p0, int p1)
+        {
+            sc["controller"].As<Controller>().Obstacles[0].position.getX().Should().Be(p0);
+            sc["controller"].As<Controller>().Obstacles[0].position.getY().Should().Be(p1);
+        }
+        
         [Then(@"Position x is (.*)")]
         public void ThenPositionXIs(int p0)
         {
