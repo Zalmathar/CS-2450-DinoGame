@@ -62,7 +62,7 @@ namespace DinoTests.Steps
         [Then(@"an obstacle is removed from the screen")]
         public void AnObstacleIsRemovedFromTheScreen()
         {
-            sc.Get<Controller>("controller").Obstacles[0].Should().Be(null);
+            sc.Get<Controller>("controller").Obstacles.Count.Should().Be(0);
         }
 
         [Then(@"throw exception")]

@@ -83,7 +83,7 @@ namespace DinoClassLib
                     score += piece.pointVal; //increase the score for dodging an obstacle
                     dodge = true;
                 }
-                if(piece.position.getX() < 1)
+                if(piece.position.getX() <= 1)
                 {
                     delList.Add(i); // Mark the obstacle to be deleted
                 }
@@ -158,7 +158,7 @@ namespace DinoClassLib
                 //  We would then pass this array of indexes to be deleted to our delete method that would go in and delete them. -- Tanis Olesen
             for(int i = delThese.Count; i > 0; i--)
             {
-                Obstacles.RemoveAt(delThese[i]);
+                Obstacles.RemoveAt(delThese[i-1]);
             }
         }
 
