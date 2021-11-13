@@ -14,5 +14,62 @@ namespace DinoTests.Steps
         {
             sc = scenarioContext;
         }
+
+        [Given(@"a big rock at \((.*), (.*)\)")]
+        public void GivenABigRockkAt(int p0, int p1)
+        {
+            x = p0;
+            y = p1;
+        }
+
+        [Given(@"a big rock constructed at \((.*), (.*)\)")]
+        public void GivenABigRockConstructedAt(int p0, int p1)
+        {
+            try
+            {
+                sc.Add("Bigrock", new BigRock(p0, p1));
+            }
+            catch (Exception e)
+            {
+                sc.Add("Exception", e);
+            }
+        }
+
+        [When(@"a big rock is constructed")]
+        public void WhenABigRockIsConstructed()
+        {
+            try
+            {
+                sc.Add("Bigrock", new BigRock(x, y));
+            }
+            catch (Exception e)
+            {
+                sc.Add("Exception", e);
+            }
+        }
+
+        [When(@"a big frame update happens")]
+        public void WhenABigFrameUpdateHappens()
+        {
+            sc["Bigrock"].As<BigRock>().onFrameUpdate();
+        }     
+
+        [Then(@"big Position x is (.*)")]
+        public void ThenBigPositionXIs(int p0)
+        {
+            sc["Bigrock"].As<BigRock>().position.getX().Should().Be(p0);
+        }
+
+        [Then(@"big Position y is (.*)")]
+        public void ThenBigPositionYIs(int p0)
+        {
+            sc["Bigrock"].As<BigRock>().position.getY().Should().Be(p0);
+        }
+
+        [Then(@"big score is set to (.*)")]
+        public void ThenBigScoreIsSetTo(int p0)
+        {
+            sc["Bigrock"].As<BigRock>().pointVal.Should().Be(p0);
+        }
     }
 }
