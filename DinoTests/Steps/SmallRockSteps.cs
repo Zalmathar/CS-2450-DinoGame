@@ -24,8 +24,8 @@ namespace DinoTests.Steps
         [Given(@"a small rock at \((.*), (.*)\)")]
         public void GivenASmallRockAt(int p0, int p1)
         {
-            x = p0;
-            y = p1;
+            sc.Add("x", p0);
+            sc.Add("y", p1);
         }
 
         [Given(@"a small rock constructed at \((.*), (.*)\)")]
@@ -46,7 +46,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("smallrock", new SmallRock(x, y));
+                sc.Add("smallrock", new SmallRock(sc.Get<int>("x"), sc.Get<int>("y")));
             }
             catch (Exception e)
             {

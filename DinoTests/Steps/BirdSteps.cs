@@ -24,8 +24,8 @@ namespace DinoTests.Steps
         [Given(@"a bird at \((.*), (.*)\)")]
         public void GivenABirdAt(int p0, int p1)
         {
-            x = p0;
-            y = p1;
+            sc.Add("x", p0);
+            sc.Add("y", p1);
         }
 
         [Given(@"a bird constructed at \((.*), (.*)\)")]
@@ -46,7 +46,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("bird", new Bird(x, y));
+                sc.Add("bird", new Bird(sc.Get<int>("x"), sc.Get<int>("y")));
             }
             catch (Exception e)
             {

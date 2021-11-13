@@ -25,8 +25,8 @@ namespace DinoTests.Steps
         [Given(@"a big rock at \((.*), (.*)\)")]
         public void GivenABigRockkAt(int p0, int p1)
         {
-            x = p0;
-            y = p1;
+            sc.Add("x", p0);
+            sc.Add("y", p1);
         }
 
         [Given(@"a big rock constructed at \((.*), (.*)\)")]
@@ -47,7 +47,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("Bigrock", new BigRock(x, y));
+                sc.Add("Bigrock", new BigRock(sc.Get<int>("x"), sc.Get<int>("y")));
             }
             catch (Exception e)
             {

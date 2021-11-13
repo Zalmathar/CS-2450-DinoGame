@@ -25,8 +25,8 @@ namespace DinoTests.Steps
         [Given(@"a player at \((.*), (.*)\)")]
         public void GivenAPlayerAt(int p0, int p1)
         {
-            x = p0;
-            y = p1;
+            sc.Add("x", p0);
+            sc.Add("y", p1);
         }
 
         [Given(@"a player constructed at \((.*), (.*)\)")]
@@ -53,7 +53,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("player", new Player(x, y));
+                sc.Add("player", new Player(sc.Get<int>("x"), sc.Get<int>("y")));
             }
             catch (Exception e)
             {
