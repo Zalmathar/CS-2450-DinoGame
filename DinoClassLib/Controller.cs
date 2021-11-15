@@ -17,7 +17,7 @@ namespace DinoClassLib
         public List<IPiece> Obstacles { get; set;}
 
         public IO io {private get; set;}
-        IOReturner ioResult;
+
 
         // Represents the current score the player of the game has achieved. 
         private int score;
@@ -54,8 +54,9 @@ namespace DinoClassLib
         // Generates a new game state representing the next frame. 
         public void FrameUpdate()
         {
+            IOReturner ioResult;
             //IF the game is not running, render the screen, if input is recieved change the game state to start, but do nothing else.. 
-            if(gameState != status.running) {
+            if (gameState != status.running) {
                 ioResult = io.render(this);
                 if (ioResult.inputDetected)
                 {
@@ -103,7 +104,7 @@ namespace DinoClassLib
 
             //Unsure if this next part is my job
             // TODO: Display the game state to the user.
-            io.render(this);
+            ioResult = io.render(this);
             
         }
 
