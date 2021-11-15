@@ -135,7 +135,7 @@ namespace DinoClassLib
         }
 
         // Randomly creates obstacles that are then stored in the obstacle list. Has a chance of not creating any obstacle's
-        public void MakeObstacle()
+        private void MakeObstacle()
 
         {
             Random RNG = new Random();
