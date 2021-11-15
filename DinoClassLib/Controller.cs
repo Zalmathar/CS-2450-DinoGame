@@ -92,8 +92,13 @@ namespace DinoClassLib
             {
                 score++;
             }
-                
-            Playerjump();
+            //I realize this still not ideal.
+            //replace Jumpinfo with IOreturnObj.input when it's done.
+            if (Jumpinfo)
+            {
+                player.Jump();
+                Jumpinfo = false;
+            }
 
             DeleteObstacle(delList);
             MakeObstacle();
@@ -160,13 +165,6 @@ namespace DinoClassLib
             {
                 Obstacles.RemoveAt(delThese[i]);
             }
-        }
-
-        private void Playerjump()
-        {
-            //replace Jumpinfo with IOreturnObj.input when it's done.
-            player.IsJumping = Jumpinfo;
-            Jumpinfo = false;
         }
 
         
