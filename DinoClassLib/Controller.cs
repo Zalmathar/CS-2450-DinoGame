@@ -50,10 +50,9 @@ namespace DinoClassLib
         // Generates a new game state representing the next frame. 
         public void FrameUpdate()
         {
-            IOReturner ioResult;
+            IOReturner ioResult = io.render(this);
             //IF the game is not running, render the screen, if input is recieved change the game state to start, but do nothing else.. 
-            if (gameState != status.running) {
-                ioResult = io.render(this);
+            if (gameState != status.running) { 
                 if (ioResult.inputDetected)
                 {
                     gameState = status.running;
@@ -100,7 +99,6 @@ namespace DinoClassLib
 
             //Unsure if this next part is my job
             // TODO: Display the game state to the user.
-            ioResult = io.render(this);
             
         }
 
