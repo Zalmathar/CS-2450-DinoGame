@@ -18,6 +18,10 @@ namespace DinoTests.Steps
         [Given(@"there is a player located at \((.*), (.*)\)")]
         public void GivenThereIsAPlayerLocatedAt(int p0, int p1)
         {
+            if (!sc.ContainsKey("controller"))
+            {
+                sc.Add("controller", new Controller(new IO()));
+            }
             sc.Get<Controller>("controller").player.position.setX(p0);
             sc.Get<Controller>("controller").player.position.setY(p1);
         }

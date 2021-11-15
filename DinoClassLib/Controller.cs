@@ -20,12 +20,8 @@ namespace DinoClassLib
 
 
         // Represents the current score the player of the game has achieved. 
-        private int score;
-        public int Score
-        {
-            get { return score; }
-            set { score = value; }
-        }
+        public int score { get; set; }
+ 
 
         //ToDo: represesnts the display size in the x direction. should be set on frame update by the returned value of the IO
         private int displayXsize;

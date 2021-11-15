@@ -18,6 +18,10 @@ namespace DinoTests.Steps
         [Given(@"there is a bird located at \((.*), (.*)\)")]
         public void GivenThereIsABirdLocatedAt(int p0, int p1)
         {
+            if (!sc.ContainsKey("controller"))
+            {
+                sc.Add("controller", new Controller(new IO()));
+            }
             sc.Get<Controller>("controller").Obstacles.Add(new Bird(p0, p1));
         }
 
