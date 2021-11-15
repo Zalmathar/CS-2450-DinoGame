@@ -71,6 +71,20 @@ namespace DinoTests.Steps
             sc.ContainsKey("Exception").Should().BeTrue();
         }
 
+        [Then(@"The score increases by (.*) points")]
+        public void ThenTheScoreIncreasesByPoints(int p0)
+        {
+            sc.Get<Controller>("controller").score.Should().Be(p0);
+        }
+
+        [Then(@"score remains the same")]
+        public void ThenScoreRemainsTheSame()
+        {
+            sc.Get<Controller>("controller").score.Should().Be(0);
+        }
+
+
+
         // This feature tests are best tested from a code review
         
         [Then(@"there should be close to (.*)% of the number of frameUpdates small rocks in the obstacles list")]
