@@ -86,7 +86,7 @@ namespace DinoTests.Steps
 
 
         // This feature tests are best tested from a code review
-        /*
+        
         [Then(@"there should be close to (.*)% of the number of frameUpdates small rocks in the obstacles list")]
         public void ThenThereShouldBeCloseToOfTheNumberOfFrameUpdatesSmallRocksInTheObstaclesList(Decimal p0)
         {
@@ -120,6 +120,6 @@ namespace DinoTests.Steps
         {
             ScenarioContext.Current.Pending();
         }
-        */
+        
     }
 }
