@@ -10,7 +10,7 @@ namespace DinoClassLib
     {
 
         // Represents the player
-        public Player player = new Player(3, 1);
+       public Player player = new Player(3, 1);
 
        public bool Jumpinfo = false;// dummy value until IO is implemented
         // Holds a List of all of the obstacles that are on screen
@@ -54,10 +54,9 @@ namespace DinoClassLib
         // Generates a new game state representing the next frame. 
         public void FrameUpdate()
         {
-            IOReturner ioResult;
+            IOReturner ioResult = io.render(this);
             //IF the game is not running, render the screen, if input is recieved change the game state to start, but do nothing else.. 
             if (gameState != status.running) {
-                ioResult = io.render(this);
                 if (ioResult.inputDetected)
                 {
                     gameState = status.running;
@@ -102,7 +101,6 @@ namespace DinoClassLib
             DeleteObstacle(delList);
             MakeObstacle();
 
-            //Unsure if this next part is my job
             // TODO: Display the game state to the user.
             ioResult = io.render(this);
             
