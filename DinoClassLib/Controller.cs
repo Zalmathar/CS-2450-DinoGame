@@ -12,8 +12,6 @@ namespace DinoClassLib
         // Represents the player
        public Player player = new Player(3, 1);
 
-       public bool Jumpinfo = false;// dummy value until IO is implemented
-        // Holds a List of all of the obstacles that are on screen
         public List<IPiece> Obstacles { get; set;}
 
         public IO io {private get; set;}
@@ -25,13 +23,20 @@ namespace DinoClassLib
 
         //ToDo: represesnts the display size in the x direction. should be set on frame update by the returned value of the IO
         private int displayXsize;
+
         // Represents the states the game can be in
         public enum status
         {
-            pre, // In the pre game state, a screen should be generated that has the player and no other objects. When one of the jump keys in pressed. The game starts
-            running, // In the running state, The player is able to jump, obsticals get randomly generated and move toward the left of the screen.
-            dead // In the dead state. The total score of the game is showed. When one of the jump keys is pressed. The game re-starts
+            // In the pre game state, a screen should be generated that has the player and no other objects. When one of the jump keys in pressed. The game starts
+            pre,
+
+            // In the running state, The player is able to jump, obsticals get randomly generated and move toward the left of the screen.
+            running,
+
+            // In the dead state. The total score of the game is showed. When one of the jump keys is pressed. The game re-starts
+            dead
         }
+
         // Represents the current state of the game
         public status gameState;
 
@@ -51,6 +56,7 @@ namespace DinoClassLib
         public void FrameUpdate()
         {
             IOReturner ioResult = io.render(this);
+
             //IF the game is not running, render the screen, if input is recieved change the game state to start, but do nothing else.. 
             if (gameState != status.running) {
                 if (ioResult.inputDetected)
@@ -64,11 +70,12 @@ namespace DinoClassLib
 
             bool dodge = false;
             List<int> delList = new List<int>();//to be replaced once delete obstacle implemented
+
             //I realize this still not ideal.
-            //replace Jumpinfo with IOreturnObj.input when it's done.
             player.Jump(ioResult.inputDetected);
-            //player.Jump(ioResult.inputDetected);
-            player.onFrameUpdate(); // Want to update player before the pieces for CheckCollision to work
+
+            // Want to update player before the pieces for CheckCollision to work
+            player.onFrameUpdate();
             for (int i = 0; i < Obstacles.Count; i++)
             {
                 IPiece piece = Obstacles[i];
@@ -76,20 +83,23 @@ namespace DinoClassLib
                 if (CheckCollision(piece) == true)
                 {
                     gameState = status.dead;
-                    // Display the end game card
+                    // TODO: Display the end game card
                 }
                 if (piece.position.getX() == 3 && !CheckCollision(piece))
                 {
-                    score += piece.pointVal; //increase the score for dodging an obstacle
+                    //increase the score for dodging an obstacle
+                    score += piece.pointVal;
                     dodge = true;
                 }
                 if(piece.position.getX() < 1)
                 {
-                    delList.Add(i); // Mark the obstacle to be deleted
+                    // Mark the obstacle to be deleted
+                    delList.Add(i);
                 }
             }
             if (!dodge)
             {
+                //increments the score by one for every tile traveled that's not dodging an obstacle
                 score++;
             }
             
@@ -146,6 +156,7 @@ namespace DinoClassLib
                 Obstacles.Add(new Bird(displayXsize, RNG.Next(2) + 3));
             }   
         }
+
         // When an obsticale has reached the minimum it can be (Far left of the view). Remove each obsticale that has reached the end of the screen
         private void DeleteObstacle(List<int> delThese)
         {
@@ -160,6 +171,5 @@ namespace DinoClassLib
             }
         }
 
-        
     }
 }

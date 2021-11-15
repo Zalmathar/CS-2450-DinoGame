@@ -31,7 +31,7 @@ namespace DinoClassLib
             ySize = 1;
             pointVal = 8;
             //ensures it's constructed in the correct spot
-            if(position.getY() != 1 || position.getX() > 200 || position.getX() <= 1)
+            if(position.getY() != 1 || position.getX() > x || position.getX() <= 1)
             {
                 throw new NotImplementedException();
             }
