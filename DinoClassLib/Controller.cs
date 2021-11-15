@@ -12,7 +12,7 @@ namespace DinoClassLib
         // Represents the player
         public Player player = new Player(3, 1);
 
-        public bool Jumpinfo = false;// dummy value until IO is implemented
+       public bool Jumpinfo = false;// dummy value until IO is implemented
         // Holds a List of all of the obstacles that are on screen
         public List<IPiece> Obstacles { get; set;}
 
@@ -94,11 +94,8 @@ namespace DinoClassLib
             }
             //I realize this still not ideal.
             //replace Jumpinfo with IOreturnObj.input when it's done.
-            if (Jumpinfo)
-            {
-                player.Jump();
-                Jumpinfo = false;
-            }
+            player.Jump(Jumpinfo);
+                //player.Jump(ioResult.inputDetected);
 
             DeleteObstacle(delList);
             MakeObstacle();

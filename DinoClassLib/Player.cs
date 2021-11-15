@@ -76,10 +76,10 @@ namespace DinoClassLib
 
         }
 
-        public void Jump()
+        public void Jump(bool input)
         {
 
-            IsJumping = true;
+            IsJumping = input;
         }
     }
 }
