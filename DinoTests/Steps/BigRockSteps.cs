@@ -18,6 +18,10 @@ namespace DinoTests.Steps
         [Given(@"there is a large rock located at \((.*), (.*)\)")]
         public void GivenThereIsALargeRockLocatedAt(int p0, int p1)
         {
+            if (!sc.ContainsKey("controller"))
+            {
+                sc.Add("controller", new Controller(new IO()));
+            }
             sc.Get<Controller>("controller").Obstacles.Add(new BigRock(p0, p1));
         }
 
