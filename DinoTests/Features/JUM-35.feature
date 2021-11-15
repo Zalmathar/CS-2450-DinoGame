@@ -1,4 +1,5 @@
 ﻿# This feature is best tested from a code review
+
  Feature: JUM-35-GeneratingObstacles
 # 	Controller Generating obstacles and adding them to the list
 

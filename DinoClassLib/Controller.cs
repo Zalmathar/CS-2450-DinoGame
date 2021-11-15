@@ -91,7 +91,7 @@ namespace DinoClassLib
                     score += piece.pointVal;
                     dodge = true;
                 }
-                if(piece.position.getX() < 1)
+                if(piece.position.getX() <= 1)
                 {
                     // Mark the obstacle to be deleted
                     delList.Add(i);
@@ -135,7 +135,7 @@ namespace DinoClassLib
         }
 
         // Randomly creates obstacles that are then stored in the obstacle list. Has a chance of not creating any obstacle's
-        private void MakeObstacle()
+        public void MakeObstacle()
 
         {
             Random RNG = new Random();
@@ -167,7 +167,7 @@ namespace DinoClassLib
                 //  We would then pass this array of indexes to be deleted to our delete method that would go in and delete them. -- Tanis Olesen
             for(int i = delThese.Count; i > 0; i--)
             {
-                Obstacles.RemoveAt(delThese[i]);
+                Obstacles.RemoveAt(delThese[i-1]);
             }
         }
 

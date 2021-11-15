@@ -27,7 +27,7 @@ namespace DinoTests.Steps
         public void GivenAControllerThatCanCreateObjectsOnFrameUpdate()
         {
             IO IOdummy = new IO();
-            sc.Add("Controller", new Controller(IOdummy));
+            sc.Add("controller", new Controller(IOdummy));
         }
         
 
@@ -37,13 +37,13 @@ namespace DinoTests.Steps
             sc.Get<Controller>("controller").FrameUpdate();
         }
 
-        [When(@"frameUpdate has been called (.*) times")]
-        public void WhenFrameUpdateHasBeenCalledTimes(int p0)
+        [When(@"MakeObstacle has been called (.*) times")]
+        public void WhenMakeObstacleHasBeenCalledTimes(int p0)
         {
             sc.Add("numberOfFrames", p0);
-            for (int i = 0; i < p0; i++)
+            for (int i = 0; i <= p0; i++)
             {
-                sc.Get<Controller>("controller").FrameUpdate();
+                sc.Get<Controller>("controller").MakeObstacle();
             }
         }
 
@@ -62,7 +62,7 @@ namespace DinoTests.Steps
         [Then(@"an obstacle is removed from the screen")]
         public void AnObstacleIsRemovedFromTheScreen()
         {
-            sc.Get<Controller>("controller").Obstacles[0].Should().Be(null);
+            sc.Get<Controller>("controller").Obstacles.Count.Should().Be(0);
         }
 
         [Then(@"throw exception")]
@@ -106,19 +106,52 @@ namespace DinoTests.Steps
         [Then(@"there should be close to (.*)% of the number of frameUpdates Large rocks in the obstacles list")]
         public void ThenThereShouldBeCloseToOfTheNumberOfFrameUpdatesLargeRocksInTheObstaclesList(Decimal p0)
         {
-            ScenarioContext.Current.Pending();
+            int numberOfBigRocks = 0;
+            float targetNumber = (float)p0 / 100 * sc["numberOfFrames"].As<int>();
+            sc.Get<Controller>("controller").Obstacles.ForEach(
+                delegate (IPiece Obstacle)
+                {
+                    if (Obstacle is BigRock)
+                    {
+                        numberOfBigRocks++;
+                    }
+                });
+            numberOfBigRocks.Should().BeInRange((int)(targetNumber - targetNumber / 10), (int)(targetNumber + targetNumber / 10));
         }
 
         [Then(@"there should be close to (.*)% of the number of frameUpdates birds in the obstacles list")]
         public void ThenThereShouldBeCloseToOfTheNumberOfFrameUpdatesBirdsInTheObstaclesList(Decimal p0)
         {
-            ScenarioContext.Current.Pending();
+            int numberOfBirds = 0;
+            float targetNumber = (float)p0 / 100 * sc["numberOfFrames"].As<int>();
+            sc.Get<Controller>("controller").Obstacles.ForEach(
+                delegate (IPiece Obstacle)
+                {
+                    if (Obstacle is Bird)
+                    {
+                        numberOfBirds++;
+                    }
+                });
+            numberOfBirds.Should().BeInRange((int)(targetNumber - targetNumber / 10), (int)(targetNumber + targetNumber / 10));
         }
 
-        [Then(@"close to (.*) of those birds should be positioned at y = (.*)")]
+        [Then(@"close to (.*) of those birds should be positioned at y (.*)")]
         public void ThenCloseToOfThoseBirdsShouldBePositionedAtY(int p0, int p1)
         {
-            ScenarioContext.Current.Pending();
+            int numberOfBirds = 0;
+            float targetNumber = (float)p0 / 100 * sc["numberOfFrames"].As<int>();
+            sc.Get<Controller>("controller").Obstacles.ForEach(
+                delegate (IPiece Obstacle)
+                {
+                    if (Obstacle is Bird)
+                    {
+                        if (Obstacle.position.getY() == p1)
+                        {
+                            numberOfBirds++;
+                        }
+                    }
+                });
+            numberOfBirds.Should().BeInRange((int)(targetNumber - targetNumber / 10), (int)(targetNumber + targetNumber / 10));
         }
         
     }
