@@ -17,6 +17,7 @@ namespace DinoClassLib
         public List<IPiece> Obstacles { get; set;}
 
         public IO io {private get; set;}
+        IOReturner ioResult;
 
         // Represents the current score the player of the game has achieved. 
         private int score;
@@ -55,7 +56,7 @@ namespace DinoClassLib
         {
             //IF the game is not running, render the screen, if input is recieved change the game state to start, but do nothing else.. 
             if(gameState != status.running) {
-                IOReturner ioResult = io.render(this);
+                ioResult = io.render(this);
                 if (ioResult.inputDetected)
                 {
                     gameState = status.running;
@@ -67,7 +68,10 @@ namespace DinoClassLib
 
             bool dodge = false;
             List<int> delList = new List<int>();//to be replaced once delete obstacle implemented
-
+            //I realize this still not ideal.
+            //replace Jumpinfo with IOreturnObj.input when it's done.
+            player.Jump(ioResult.inputDetected);
+            //player.Jump(ioResult.inputDetected);
             player.onFrameUpdate(); // Want to update player before the pieces for CheckCollision to work
             for (int i = 0; i < Obstacles.Count; i++)
             {
@@ -92,10 +96,7 @@ namespace DinoClassLib
             {
                 score++;
             }
-            //I realize this still not ideal.
-            //replace Jumpinfo with IOreturnObj.input when it's done.
-            player.Jump(Jumpinfo);
-                //player.Jump(ioResult.inputDetected);
+            
 
             DeleteObstacle(delList);
             MakeObstacle();
