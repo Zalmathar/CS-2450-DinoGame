@@ -5,26 +5,74 @@
 namespace DinoClassLib {
     public class IO
     {
-        private int maxScreenXsize;
+        private static int maxScreenXsize = 50;
+        private static int maxFPS = 60;
+        Pixel[,] Screen = new Pixel[maxScreenXsize, 6];
         private bool checkInput()
         {
-            //TODO: Check for input
+            ConsoleKeyInfo cki;
+            cki = Console.ReadKey(true);
+            if (cki.Key.ToString() == "UpArrow" || cki.Key.ToString() == "Spacebar" || cki.Key.ToString() == "W")
+            {
+                return true;
+            }
             return false;
         }
         public IOReturner render(Controller ConsoleController)
         {
+            //Paint the backdrop
+            for (int yi = 5; yi >= 0; yi--)
+            {
+                for (int xi = 0; xi < maxScreenXsize; xi++)
+                {
+                    switch (yi)
+                    {
+                        case 6:
+                            Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
+                            break;
+                        case 0:
+                            Screen[xi, yi].backgroundColor = ConsoleColor.Green;
+                            break;
+                        default:
+                            Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
+                            break;
 
-            //TODO: render
+                    }
+
+
+                }
+            }
+
+            //Set colors that should be different from default, making sure to stay within bounds.
             switch (ConsoleController.gameState)
             {
                 case Controller.status.pre: //TODO: Impliment a pregame render
                     break;
-                case Controller.status.running: //TODO: Impliment a running render
+                case Controller.status.running: //TODO:
+
                     break;
                 case Controller.status.dead: //TODO: Impliment a dead render
                     break;
             }
-            //TODO: detect input
+
+
+            //Render screen
+            for (int yi = 5; yi >= 0; yi--)
+            {
+                for (int xi = 0; xi < maxScreenXsize - 1; xi++)
+                {
+                    Console.BackgroundColor = Screen[xi, yi].backgroundColor;
+                    Console.ForegroundColor = Screen[xi, yi].foregroundColor;
+                    Console.Write(Screen[xi, yi].text);
+
+                }
+                Console.ResetColor();
+                Console.Write("\n");
+            }
+            //render score below screen
+            Console.Write("Score: " + ConsoleController.score + "                    ");
+
+
 
             IOReturner returnVal = new IOReturner(checkInput(), maxScreenXsize);
             return returnVal;
@@ -32,16 +80,58 @@ namespace DinoClassLib {
         }
         public IO()
         {
-            //
-            // TODO: Add constructor logic here
-            //TODO: Add default screenXsize;
-            //
+            for (int yi = 5; yi >= 0; yi--)
+            {
+                for (int xi = 0; xi < maxScreenXsize; xi++)
+                {
+                    Screen[xi, yi] = new Pixel();
+                    switch (yi)
+                    {
+                        case 6:
+                            Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
+                            break;
+                        case 0:
+                            Screen[xi, yi].backgroundColor = ConsoleColor.Green;
+                            break;
+                        default:
+                            Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
+                            break;
+
+                    }
+
+
+                }
+            }
         }
         public IO(int screenXsize)
         {
             //
             // TODO: Add constructor logic here
-            this.maxScreenXsize = screenXsize;
+            maxScreenXsize = screenXsize;
+            //initialize screen
+            for (int yi = 5; yi >= 0; yi--)
+            {
+                for (int xi = 0; xi < maxScreenXsize; xi++)
+                {
+                    Screen[xi, yi] = new Pixel();
+                    switch (yi)
+                    {
+                        case 6:
+                            Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
+                            break;
+                        case 0:
+                            Screen[xi, yi].backgroundColor = ConsoleColor.Green;
+                            break;
+                        default:
+                            Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
+                            break;
+
+                    }
+
+
+                }
+            }
+
         }
     }
 
@@ -54,8 +144,23 @@ namespace DinoClassLib {
         public IOReturner(bool inputDetected, int maxScreenXSize)
         {
             this.inputDetected = inputDetected;
-            this.maxScreenXSize = maxScreenXSize; 
+            this.maxScreenXSize = maxScreenXSize;
 
+        }
+
+    }
+
+    public class Pixel
+    {
+        public string text;
+        public ConsoleColor backgroundColor;
+        public ConsoleColor foregroundColor;
+
+        public Pixel()
+        {
+            text = "  ";
+            backgroundColor = ConsoleColor.Black;
+            foregroundColor = ConsoleColor.White;
         }
 
     }
