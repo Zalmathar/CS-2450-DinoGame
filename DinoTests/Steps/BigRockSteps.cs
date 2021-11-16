@@ -22,7 +22,7 @@ namespace DinoTests.Steps
             {
                 sc.Add("controller", new Controller(new IO()));
             }
-            sc.Get<Controller>("controller").Obstacles.Add(new BigRock(p0, p1));
+            sc.Get<Controller>("controller").Obstacles.Add(new BigRock(new Position (p0, p1)));
         }
 
 
@@ -38,7 +38,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("Bigrock", new BigRock(p0, p1));
+                sc.Add("Bigrock", new BigRock(new Position (p0, p1)));
             }
             catch (Exception e)
             {
@@ -51,7 +51,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("Bigrock", new BigRock(sc.Get<int>("x"), sc.Get<int>("y")));
+                sc.Add("Bigrock", new BigRock(new Position (sc.Get<int>("x"), sc.Get<int>("y"))));
             }
             catch (Exception e)
             {

@@ -24,14 +24,14 @@ namespace DinoClassLib
             get;
         }
 
-        public SmallRock(int x, int y)
+        public SmallRock(Position p0)
         {
-            position = new Position(x,y);
+            position = p0;
             xSize = 1;
             ySize = 1;
             pointVal = 8;
             //ensures it's constructed in the correct spot
-            if(position.getY() != 1 || position.getX() > x || position.getX() <= 1)
+            if(position.getY() != 1 || position.getX() <= 1)
             {
                 throw new NotImplementedException();
             }

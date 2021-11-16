@@ -26,11 +26,6 @@ Feature: JUM51
 		When a bird is constructed
 		Then throw exception
 
-	Scenario: JUM-51 bird x position is too high
-		Given a bird at (500, 1)
-		When a bird is constructed
-		Then throw exception
-
 	Scenario: JUM-51 bird points are correct
 		Given a bird at (4, 3)
 		When a bird is constructed

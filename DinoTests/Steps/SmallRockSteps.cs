@@ -22,7 +22,7 @@ namespace DinoTests.Steps
             {
                 sc.Add("controller", new Controller(new IO()));
             }
-            sc.Get<Controller>("controller").Obstacles.Add(new SmallRock(p0, p1));
+            sc.Get<Controller>("controller").Obstacles.Add(new SmallRock(new Position(p0, p1)));
         }
 
         [Given(@"a small rock at \((.*), (.*)\)")]
@@ -37,7 +37,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("smallrock", new SmallRock(p0, p1));
+                sc.Add("smallrock", new SmallRock(new Position(p0, p1)));
             }
             catch (Exception e)
             {
@@ -50,7 +50,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("smallrock", new SmallRock(sc.Get<int>("x"), sc.Get<int>("y")));
+                sc.Add("smallrock", new SmallRock(new Position(sc.Get<int>("x"), sc.Get<int>("y"))));
             }
             catch (Exception e)
             {

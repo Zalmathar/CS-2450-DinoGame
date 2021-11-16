@@ -25,11 +25,6 @@ Feature: JUM49
 		When a small rock is constructed
 		Then throw exception
 
-	Scenario: JUM-49 small rock x position is too high
-		Given a small rock at (500, 1)
-		When a small rock is constructed
-		Then throw exception
-
 	Scenario: JUM-49 small rock points are correct
 		Given a small rock at (4, 1)
 		When a small rock is constructed

@@ -21,7 +21,7 @@ namespace DinoClassLib
         public int score { get; set; }
  
 
-        //ToDo: represesnts the display size in the x direction. should be set on frame update by the returned value of the IO
+        //represesnts the display size in the x direction. should be set on frame update by the returned value of the IO
         private int displayXsize;
 
         // Represents the states the game can be in
@@ -143,28 +143,23 @@ namespace DinoClassLib
             //1-50 Chance of the obstacle being a small rock
             if (RNG.Next(50) == 1)
             {
-                Obstacles.Add(new SmallRock(displayXsize, 1));
+                Obstacles.Add(new SmallRock(new Position (displayXsize, 1)));
             } 
             //1-75 Chance of the obstacle being a large rock
             else if (RNG.Next(75) == 1)
             {
-                Obstacles.Add(new BigRock(displayXsize, 1));
+                Obstacles.Add(new BigRock(new Position (displayXsize, 1)));
             }
             //1-100 Chance of the obstacle being a bird
             else if (RNG.Next(100) == 1)
             {
-                Obstacles.Add(new Bird(displayXsize, RNG.Next(2) + 3));
+                Obstacles.Add(new Bird(new Position (displayXsize, RNG.Next(2) + 3)));
             }   
         }
 
         // When an obsticale has reached the minimum it can be (Far left of the view). Remove each obsticale that has reached the end of the screen
         private void DeleteObstacle(List<int> delThese)
         {
-            // TODO: Delete each obstacle that is specified by delThese
-            //To do this im thinking of in this iteration loop, store the index of each item that needs to be deleted. 
-                 // Than deleting them from the largest index to the smallest. IE.If the obstacles stored at index 1, 3, and 10 need to be deleted. Delete them in order 10, 3, then 1.
-                 // Deleteing them in reverse would preserve the integrity of the list as we delete multiple objects from it.Minimizing the amount of times we have to iterate through our obstacle list.
-                //  We would then pass this array of indexes to be deleted to our delete method that would go in and delete them. -- Tanis Olesen
             for(int i = delThese.Count; i > 0; i--)
             {
                 Obstacles.RemoveAt(delThese[i-1]);
