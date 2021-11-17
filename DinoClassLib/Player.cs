@@ -11,16 +11,16 @@ namespace DinoClassLib
             set;
         }
 
-        public int pointVal
+        public int PointVal
         {
             get;
         }
-        public int xSize
+        public int XSize
         {
             get;
         }
 
-        public int ySize
+        public int YSize
         {
             get;
         }
@@ -31,45 +31,45 @@ namespace DinoClassLib
             set;
         }
 
-        private int jumpstate = 0;
+        private int _jumpstate = 0;
 
-        public Player(int x, int y)
+        public Player(Position p0)
         {
-            position = new Position(x, y);
-            xSize = 1;
-            ySize = 2;
-            pointVal = 0;
+            position = p0;
+            XSize = 1;
+            YSize = 2;
+            PointVal = 0;
             IsJumping = false;
             if (position.getY() != 1 || position.getX() != 3)
             {
                 throw new NotImplementedException();
             }
         }
-        public void onFrameUpdate()
+        public void OnFrameUpdate()
         {
 
-            if(jumpstate == 0 && IsJumping)
+            if(_jumpstate == 0 && IsJumping)
             {
                 position.setY(2);
-                jumpstate = 1;
-            }else if(jumpstate == 1)
+                _jumpstate = 1;
+            }else if(_jumpstate == 1)
             {
                 position.setY(3);
-                jumpstate = 2;
-            }else if(jumpstate == 2)
+                _jumpstate = 2;
+            }else if(_jumpstate == 2)
             {
                 position.setY(3);
-                jumpstate = 3;
+                _jumpstate = 3;
             }
-            else if(jumpstate == 3)
+            else if(_jumpstate == 3)
             {
                 position.setY(2);
-                jumpstate = 4;
+                _jumpstate = 4;
             }
-            else if(jumpstate == 4)
+            else if(_jumpstate == 4)
             {
                 position.setY(1);
-                jumpstate = 0;
+                _jumpstate = 0;
             }
 
             IsJumping = false;

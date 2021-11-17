@@ -12,22 +12,38 @@ namespace DinoClassLib
     {
 
         // Represents the player
-        public Player player = new Player(3, 1);
+        public Player player = new Player(new Position (3, 1));
 
         public List<IPiece> Obstacles { get; set; }
 
-        public IO io { private get; set; }
+        public IO Io {private get; set;}
 
 
         // Represents the current score the player of the game has achieved. 
-        public int score { get; set; }
-
+        public int Score { get; set; }
+ 
 
         //represesnts the display size in the x direction. should be set on frame update by the returned value of the IO
-        private int displayXsize = 50;
+        private int _displayXsize = 50;
+
+
+        // Represents the current state of the game
+        public Status gameState;
+
+
+        // Constructs the starting state of the game.
+        public Controller(IO io)
+        {
+           Obstacles = new List<IPiece>();
+           Score = 0;
+            // TODO: Start the game in the pre game state, Create the player, and let the IO render the screen. When one of the jump keys is received start the game.
+           this.gameState = Status.pre;
+           this.Io = io;
+
+        }
 
         // Represents the states the game can be in
-        public enum status
+        public enum Status
         {
             // In the pre game state, a screen should be generated that has the player and no other objects. When one of the jump keys in pressed. The game starts
             pre,
@@ -39,31 +55,16 @@ namespace DinoClassLib
             dead
         }
 
-        // Represents the current state of the game
-        public status gameState;
-
-
-        // Constructs the starting state of the game.
-        public Controller(IO io)
-        {
-            Obstacles = new List<IPiece>();
-            score = 0;
-            // TODO: Start the game in the pre game state, Create the player, and let the IO render the screen. When one of the jump keys is received start the game.
-            this.gameState = status.pre;
-            this.io = io;
-        }
-
         // Generates a new game state representing the next frame. 
         public void FrameUpdate()
         {
-            IOReturner ioResult = io.render(this);
+            IOReturner ioResult = Io.render(this);
 
             //IF the game is not running, render the screen, if input is recieved change the game state to start, but do nothing else.. 
-            if (gameState != status.running)
-            {
+            if (gameState != Status.running) {
                 if (ioResult.inputDetected)
                 {
-                    gameState = status.running;
+                    gameState = Status.running;
                 }
                 return;
             }
@@ -75,20 +76,20 @@ namespace DinoClassLib
             player.Jump(ioResult.inputDetected);
 
             // Want to update player before the pieces for CheckCollision to work
-            player.onFrameUpdate();
+            player.OnFrameUpdate();
             for (int i = 0; i < Obstacles.Count; i++)
             {
                 IPiece piece = Obstacles[i];
-                piece.onFrameUpdate();
+                piece.OnFrameUpdate();
                 if (CheckCollision(piece) == true)
                 {
-                    gameState = status.dead;
+                    gameState = Status.dead;
                     // TODO: Display the end game card
                 }
                 if (piece.position.getX() == 3 && !CheckCollision(piece))
                 {
                     //increase the score for dodging an obstacle
-                    score += piece.pointVal;
+                    Score += piece.PointVal;
                     dodge = true;
                 }
                 if (piece.position.getX() <= 1)
@@ -100,7 +101,7 @@ namespace DinoClassLib
             if (!dodge)
             {
                 //increments the score by one for every tile traveled that's not dodging an obstacle
-                score++;
+                Score++;
             }
 
 
@@ -108,8 +109,8 @@ namespace DinoClassLib
             MakeObstacle();
 
             // TODO: Display the game state to the user.
-            ioResult = io.render(this);
-
+            ioResult = Io.render(this);
+            
         }
 
         // Checks an obstacle against the players position to determin if a collision has been detected.
@@ -122,7 +123,7 @@ namespace DinoClassLib
             }
             else
             {
-                for (int i = 0; i < _obstacle.ySize; i++)
+                for(int i = 0; i < _obstacle.YSize; i++)
                 {
                     if (player.position.getY() == _obstacle.position.getY() + i || player.position.getY() + 1 == _obstacle.position.getY() + i)
                     {
@@ -143,18 +144,18 @@ namespace DinoClassLib
             //1-50 Chance of the obstacle being a small rock
             if (RNG.Next(50) == 1)
             {
-                Obstacles.Add(new SmallRock(new Position(displayXsize, 1)));
-            }
+                Obstacles.Add(new SmallRock(new Position (_displayXsize, 1)));
+            } 
             //1-75 Chance of the obstacle being a large rock
             else if (RNG.Next(75) == 1)
             {
-                Obstacles.Add(new BigRock(new Position(displayXsize, 1)));
+                Obstacles.Add(new BigRock(new Position (_displayXsize, 1)));
             }
             //1-100 Chance of the obstacle being a bird
             else if (RNG.Next(100) == 1)
             {
-                Obstacles.Add(new Bird(new Position(displayXsize, RNG.Next(2) + 3)));
-            }
+                Obstacles.Add(new Bird(new Position (_displayXsize, RNG.Next(2) + 3)));
+            }   
         }
 
         // When an obsticale has reached the minimum it can be (Far left of the view). Remove each obsticale that has reached the end of the screen
@@ -172,25 +173,25 @@ namespace DinoClassLib
             double fps = (double)IO.maxFPS;
             while (true)
             {
-                if ((gameState == status.pre) || (gameState == status.dead))
+                if ((gameState == Status.pre) || (gameState == Status.dead))
                 {
-                    ioResult = io.render(this);
+                    ioResult = Io.render(this);
                     if (ioResult.inputDetected == true)
                     {
                         // Reset the score
-                        score = 0;
+                        Score = 0;
                         // Reset the obstacle list
                         Obstacles = new List<IPiece>();
                         // Reset the player
-                        player = new Player(3, 1);
-                        gameState = status.running;
+                        player = new Player(new Position(3, 1));
+                        gameState = Status.running;
                     }
                     FrameLimiter(fps);
                 }
                 
-                else if (gameState == status.running)
+                else if (gameState == Status.running)
                 {
-                    while (gameState == status.running)
+                    while (gameState == Status.running)
                     {
                         FrameLimiter(fps);
                         FrameUpdate();

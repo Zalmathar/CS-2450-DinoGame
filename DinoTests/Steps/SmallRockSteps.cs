@@ -62,7 +62,7 @@ namespace DinoTests.Steps
         [When(@"a frame update happens")]
         public void WhenAFrameUpdateHappens()
         {
-            sc.Get<SmallRock>("smallrock").onFrameUpdate();
+            sc.Get<SmallRock>("smallrock").OnFrameUpdate();
         }
 
         [Then(@"the small rock position is at \((.*), (.*)\)")]
@@ -87,7 +87,7 @@ namespace DinoTests.Steps
         [Then(@"score is set to (.*)")]
         public void ThenScoreIsSetTo(int p0)
         {
-            sc.Get<SmallRock>("smallrock").pointVal.Should().Be(p0);
+            sc.Get<SmallRock>("smallrock").PointVal.Should().Be(p0);
         }
 
     }

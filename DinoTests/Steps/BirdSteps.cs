@@ -61,7 +61,7 @@ namespace DinoTests.Steps
         [When(@"a bird frame update happens")]
         public void WhenABirdFrameUpdateHappens()
         {
-            sc.Get<Bird>("bird").onFrameUpdate();
+            sc.Get<Bird>("bird").OnFrameUpdate();
         }
 
         [Then(@"the bird position is at \((.*), (.*)\)")]
@@ -86,7 +86,7 @@ namespace DinoTests.Steps
         [Then(@"bird score is set to (.*)")]
         public void ThenBirdScoreIsSetTo(int p0)
         {
-            sc.Get<Bird>("bird").pointVal.Should().Be(p0);
+            sc.Get<Bird>("bird").PointVal.Should().Be(p0);
         }
     }
 }

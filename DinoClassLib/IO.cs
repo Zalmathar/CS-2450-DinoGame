@@ -50,14 +50,14 @@ namespace DinoClassLib
             //Set colors that should be different from default, making sure to stay within bounds.
             switch (ConsoleController.gameState)
             {
-                case Controller.status.pre: 
+
+                case Controller.Status.pre: 
                     Console.WriteLine("Welcome to the dinosaur game!");
                     Console.WriteLine("Please press up, 'w' or the space bar to begin");
                     Console.WriteLine("Use those buttons to make the dinosaur jump!");
                     Console.WriteLine("Don't hit the obstacles!");
-
                     break;
-                case Controller.status.running: //TODO:
+                case Controller.Status.running: //TODO:
                     // Create a new Screen Frame
                     for (int yi = 5; yi >= 0; yi--)
                     {
@@ -80,7 +80,7 @@ namespace DinoClassLib
                     }
 
                     // Add player to screen
-                    for (int i = 0; i < ConsoleController.player.ySize; i++)
+                    for (int i = 0; i < ConsoleController.player.YSize; i++)
                     {
                         // Player Safety check
                         if((ConsoleController.player.position.getX() != 3) || (ConsoleController.player.position.getY() > 3) || (ConsoleController.player.position.getY() < 1))
@@ -122,16 +122,18 @@ namespace DinoClassLib
                             // Obst is of an Invalid type
                             throw new Exception("Controller obstacle list contains an object type not supported");
                         }
-                        for (int i = 0; i < obst.ySize; i++)
+                        for (int i = 1; i < obst.YSize; i++)
                         {
                             Screen[obst.position.getX() - 1, i + obst.position.getY()] = obstPixel;
                         }
                     }
                     break;
-                case Controller.status.dead:
+
+                case Controller.Status.dead:
                     Console.Clear();
-                    Console.WriteLine($"Youre final score is {ConsoleController.score}");
+                    Console.WriteLine($"Youre final score is {ConsoleController.Score}");
                     Console.WriteLine("Please play again.");
+
                     break;
             }
 
@@ -148,7 +150,7 @@ namespace DinoClassLib
                 Console.Write("\n");
             }
             //render score below screen
-            Console.Write("Score: " + ConsoleController.score + "                    ");
+            Console.Write("Score: " + ConsoleController.Score + "                    ");
             IOReturner returnVal = new IOReturner(checkInput(), maxScreenXsize);
             return returnVal;
         }
