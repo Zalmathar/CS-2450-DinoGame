@@ -49,7 +49,27 @@ namespace DinoClassLib {
                 case Controller.status.pre: //TODO: Impliment a pregame render
                     break;
                 case Controller.status.running: //TODO:
-
+                    // Add player to screen
+                    for(int i = 0; i < ConsoleController.player.ySize; i++)
+                    {
+                        Pixel playerPixel = new Pixel();
+                        playerPixel.text = "||";
+                        Screen[ConsoleController.player.position.getX(), i + ConsoleController.player.position.getY()] = playerPixel;
+                    }
+                    // Add controller to screen
+                    foreach(IPiece obst in ConsoleController.Obstacles)
+                    {
+                        Pixel obstPixel = new Pixel();
+                        Type obsType = obst.GetType();
+                        if(obsType.Equals(typeof(Bird)))
+                        {
+                            obstPixel.text = "< ";
+                        }
+                        else if (obsType.Equals(typeof(SmallRock)) || obsType.Equals(typeof(BigRock)))
+                        {
+                            obstPixel.text = "XX";
+                        }
+                    }
                     break;
                 case Controller.status.dead: //TODO: Impliment a dead render
                     break;
