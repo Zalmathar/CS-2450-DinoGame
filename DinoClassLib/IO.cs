@@ -48,7 +48,7 @@ namespace DinoClassLib
                 case Controller.status.pre: //TODO: Impliment a pregame render
                     Console.WriteLine("Welcome to the dinosaur game!");
                     Console.WriteLine("Please press up, 'w' or the space bar to begin");
-                    //TODO: run IOreturner until input is given
+                    
                     break;
                 case Controller.status.running: //TODO:
                     // Add player to screen
@@ -101,6 +101,7 @@ namespace DinoClassLib
                     }
                     break;
                 case Controller.status.dead:
+                    Console.Clear();
                     Console.WriteLine($"Youre final score is {ConsoleController.score}");
                     Console.WriteLine("Please play again.");
                     break;
