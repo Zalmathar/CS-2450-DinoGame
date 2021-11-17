@@ -51,6 +51,11 @@ namespace DinoClassLib
                     // Add player to screen
                     for (int i = 1; i < ConsoleController.player.ySize; i++)
                     {
+                        // Player Safety check
+                        if((ConsoleController.player.position.getX() != 3) || (ConsoleController.player.position.getY() > 3) || (ConsoleController.player.position.getY() < 1))
+                        {
+                            throw new Exception("Attempted to display a player at an invalid position");
+                        }
                         // Create new pixel with formating for player
                         Pixel playerPixel = new Pixel();
                         playerPixel.foregroundColor = ConsoleColor.Black;
@@ -66,9 +71,9 @@ namespace DinoClassLib
                         //Obstacle X and Y safety Checks
                         if((obst.position.getX() > maxScreenXsize) || (obst.position.getX() < 0) || (obst.position.getY() > 4) || (obst.position.getY() < 1))
                         {
-                            throw new Exception("Attempted to display an obstacle out of range");
+                            throw new Exception("Attempted to display an obstacle at an invalid position");
                         }
-                        
+
                         Pixel obstPixel = new Pixel();
                         obstPixel.foregroundColor = ConsoleColor.Black;
                         obstPixel.backgroundColor = ConsoleColor.Blue;
