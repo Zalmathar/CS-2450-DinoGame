@@ -2,6 +2,8 @@
 // 11/5/2021
 // Controlls the behavior of the game
 using System;
+// Only used for Thread.sleep
+using System.Threading;
 using System.Collections.Generic;
 
 namespace DinoClassLib
@@ -12,7 +14,7 @@ namespace DinoClassLib
         // Represents the player
         public Player player = new Player(new Position (3, 1));
 
-        public List<IPiece> Obstacles { get; set;}
+        public List<IPiece> Obstacles { get; set; }
 
         public IO Io {private get; set;}
 
@@ -22,7 +24,7 @@ namespace DinoClassLib
  
 
         //represesnts the display size in the x direction. should be set on frame update by the returned value of the IO
-        private int _displayXsize;
+        private int _displayXsize = 50;
 
 
         // Represents the current state of the game
@@ -65,12 +67,10 @@ namespace DinoClassLib
                     gameState = Status.running;
                 }
                 return;
-               }
-
-            int[] temp = new int[1];//to be replaced once delete obstacle implemented
+            }
 
             bool dodge = false;
-            List<int> delList = new List<int>();//to be replaced once delete obstacle implemented
+            List<int> delList = new List<int>();
 
             //I realize this still not ideal.
             player.Jump(ioResult.inputDetected);
@@ -92,7 +92,7 @@ namespace DinoClassLib
                     Score += piece.PointVal;
                     dodge = true;
                 }
-                if(piece.position.getX() <= 1)
+                if (piece.position.getX() <= 1)
                 {
                     // Mark the obstacle to be deleted
                     delList.Add(i);
@@ -103,7 +103,7 @@ namespace DinoClassLib
                 //increments the score by one for every tile traveled that's not dodging an obstacle
                 Score++;
             }
-            
+
 
             DeleteObstacle(delList);
             MakeObstacle();
@@ -118,7 +118,7 @@ namespace DinoClassLib
         private bool CheckCollision(IPiece _obstacle)
         {
             if (_obstacle.position.getX() != player.position.getX())
-            {   
+            {
                 return false;
             }
             else
@@ -161,11 +161,49 @@ namespace DinoClassLib
         // When an obsticale has reached the minimum it can be (Far left of the view). Remove each obsticale that has reached the end of the screen
         private void DeleteObstacle(List<int> delThese)
         {
-            for(int i = delThese.Count; i > 0; i--)
+            for (int i = delThese.Count; i > 0; i--)
             {
-                Obstacles.RemoveAt(delThese[i-1]);
+                Obstacles.RemoveAt(delThese[i - 1]);
             }
         }
 
-    }
+        public void runGame()
+        {
+            IOReturner ioResult;
+            double fps = (double)IO.maxFPS;
+            while (true)
+            {
+                if ((gameState == Status.pre) || (gameState == Status.dead))
+                {
+                    ioResult = Io.render(this);
+                    if (ioResult.inputDetected == true)
+                    {
+                        // Reset the score
+                        Score = 0;
+                        // Reset the obstacle list
+                        Obstacles = new List<IPiece>();
+                        // Reset the player
+                        player = new Player(new Position(3, 1));
+                        gameState = Status.running;
+                    }
+                    FrameLimiter(fps);
+                }
+                
+                else if (gameState == Status.running)
+                {
+                    while (gameState == Status.running)
+                    {
+                        FrameLimiter(fps);
+                        FrameUpdate();
+                    }
+                }
+            }
+
+            void FrameLimiter(double fps)
+            {
+                double info = 1 / fps;
+                info *= 2000;
+                Thread.Sleep((int)info);
+            }
+        }    }
 }
