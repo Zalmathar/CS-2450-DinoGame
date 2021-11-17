@@ -50,16 +50,22 @@ namespace DinoClassLib {
                     break;
                 case Controller.status.running: //TODO:
                     // Add player to screen
-                    for(int i = 0; i < ConsoleController.player.ySize; i++)
+                    for(int i = 1; i < ConsoleController.player.ySize; i++)
                     {
+                        // Create new pixel with formating for player
                         Pixel playerPixel = new Pixel();
+                        playerPixel.foregroundColor = ConsoleColor.Black;
+                        playerPixel.backgroundColor = ConsoleColor.Blue;
                         playerPixel.text = "||";
+                        //overwrite the existing pixel with our new pixel at the correct position.
                         Screen[ConsoleController.player.position.getX(), i + ConsoleController.player.position.getY()] = playerPixel;
                     }
                     // Add controller to screen
                     foreach(IPiece obst in ConsoleController.Obstacles)
                     {
                         Pixel obstPixel = new Pixel();
+                        obstPixel.foregroundColor = ConsoleColor.Black;
+                        obstPixel.backgroundColor = ConsoleColor.Blue;
                         Type obsType = obst.GetType();
                         if(obsType.Equals(typeof(Bird)))
                         {
@@ -68,6 +74,10 @@ namespace DinoClassLib {
                         else if (obsType.Equals(typeof(SmallRock)) || obsType.Equals(typeof(BigRock)))
                         {
                             obstPixel.text = "XX";
+                        }
+                        for(int i = 1; i < obst.ySize; i++)
+                        {
+                            Screen[obst.position.getX(), i + obst.position.getY()] = obstPixel;
                         }
                     }
                     break;
