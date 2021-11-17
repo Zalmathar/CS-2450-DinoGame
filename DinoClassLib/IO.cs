@@ -61,7 +61,7 @@ namespace DinoClassLib
                         playerPixel.foregroundColor = ConsoleColor.Black;
                         playerPixel.backgroundColor = ConsoleColor.Blue;
                         playerPixel.text = "||";
-                        //overwrite the existing pixel with our new pixel at the correct position.
+                        // overwrite the existing pixel with our new pixel at the correct position.
                         Screen[ConsoleController.player.position.getX(), i + ConsoleController.player.position.getY()] = playerPixel;
                     }
 
@@ -97,7 +97,7 @@ namespace DinoClassLib
                         }
                     }
                     break;
-                case Controller.status.dead: //TODO: Impliment a dead render
+                case Controller.status.dead: //TODO: Implement a dead render
                     break;
             }
 
