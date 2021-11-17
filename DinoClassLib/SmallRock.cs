@@ -10,16 +10,16 @@ namespace DinoClassLib
             set;
         }
 
-        public int pointVal
+        public int PointVal
         {
             get;
         }
-        public int xSize
+        public int XSize
         {
             get;
         }
 
-        public int ySize
+        public int YSize
         {
             get;
         }
@@ -27,16 +27,16 @@ namespace DinoClassLib
         public SmallRock(Position p0)
         {
             position = p0;
-            xSize = 1;
-            ySize = 1;
-            pointVal = 8;
+            XSize = 1;
+            YSize = 1;
+            PointVal = 8;
             //ensures it's constructed in the correct spot
             if(position.getY() != 1 || position.getX() <= 1)
             {
                 throw new NotImplementedException();
             }
         }
-    public void onFrameUpdate()
+    public void OnFrameUpdate()
         {
             int x = position.getX();//getting the current x value
             position.setX(x-1);//assuming bottom left is (0,0)

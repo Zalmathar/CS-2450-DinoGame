@@ -38,7 +38,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("player", new Player(p0, p1));
+                sc.Add("player", new Player(new Position (p0, p1)));
             }
             catch (Exception e)
             {
@@ -57,7 +57,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("player", new Player(sc.Get<int>("x"), sc.Get<int>("y")));
+                sc.Add("player", new Player(new Position (sc.Get<int>("x"), sc.Get<int>("y"))));
             }
             catch (Exception e)
             {
@@ -68,7 +68,7 @@ namespace DinoTests.Steps
         [When(@"a player frame update happens")]
         public void WhenAPlayerFrameUpdateHappens()
         {
-            sc.Get<Player>("player").onFrameUpdate();
+            sc.Get<Player>("player").OnFrameUpdate();
         }
 
         [When(@"player jumps again")]
@@ -99,7 +99,7 @@ namespace DinoTests.Steps
         [Then(@"player score is set to (.*)")]
         public void ThenPlayerScoreIsSetTo(int p0)
         {
-            sc.Get<Player>("player").pointVal.Should().Be(p0);
+            sc.Get<Player>("player").PointVal.Should().Be(p0);
         }
     }
 }

@@ -62,7 +62,7 @@ namespace DinoTests.Steps
         [When(@"a big frame update happens")]
         public void WhenABigFrameUpdateHappens()
         {
-            sc.Get<BigRock>("Bigrock").onFrameUpdate();
+            sc.Get<BigRock>("Bigrock").OnFrameUpdate();
         }     
 
         [Then(@"the large rock position is at \((.*), (.*)\)")]
@@ -87,7 +87,7 @@ namespace DinoTests.Steps
         [Then(@"big score is set to (.*)")]
         public void ThenBigScoreIsSetTo(int p0)
         {
-            sc.Get<BigRock>("Bigrock").pointVal.Should().Be(p0);
+            sc.Get<BigRock>("Bigrock").PointVal.Should().Be(p0);
         }
     }
 }

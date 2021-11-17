@@ -6,19 +6,19 @@ namespace DinoClassLib
         {
             get;
         }
-        int pointVal
+        int PointVal
         {
             get;
         }
-        int xSize
+        int XSize
         {
             get;
         }
 
-        int ySize
+        int YSize
         {
             get;
         }
-        public void onFrameUpdate();
+        public void OnFrameUpdate();
     }
 }
