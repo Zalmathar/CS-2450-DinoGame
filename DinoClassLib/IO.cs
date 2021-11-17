@@ -31,11 +31,13 @@ namespace DinoClassLib
             switch (ConsoleController.gameState)
             {
 
-                case Controller.Status.pre: 
+                case Controller.Status.pre:
+                    Console.SetCursorPosition(0, 6);
                     Console.WriteLine("Welcome to the dinosaur game!");
                     Console.WriteLine("Please press up, 'w' or the space bar to begin");
                     Console.WriteLine("Use those buttons to make the dinosaur jump!");
                     Console.WriteLine("Don't hit the obstacles!");
+                    Console.SetCursorPosition(0, 0);
                     break;
                 case Controller.Status.running: //TODO:
                     // Create a new Screen Frame
@@ -80,7 +82,7 @@ namespace DinoClassLib
                     foreach (IPiece obst in ConsoleController.Obstacles)
                     {
                         //Obstacle X and Y safety Checks
-                        if((obst.position.getX() > maxScreenXsize) || (obst.position.getX() < 0) || (obst.position.getY() > 4) || (obst.position.getY() < 1))
+                        if ((obst.position.getX() > maxScreenXsize) || (obst.position.getX() < 0) || (obst.position.getY() > 4) || (obst.position.getY() < 1))
                         {
                             throw new Exception("Attempted to display an obstacle at an invalid position");
                         }
@@ -108,11 +110,17 @@ namespace DinoClassLib
                             Screen[obst.position.getX() - 1, i + obst.position.getY()] = obstPixel;
                         }
                     }
+
+                    Console.SetCursorPosition(0, 6);
+                    Console.Write("Score: " + ConsoleController.Score + "                    ");
+                    Console.SetCursorPosition(0, 0);
                     break;
 
                 case Controller.Status.dead:
+                    Console.SetCursorPosition(0, 6);
                     Console.WriteLine($"Youre final score is {ConsoleController.Score}");
                     Console.WriteLine("Please play again.");
+                    Console.SetCursorPosition(0, 0);
                     break;
             }
 
@@ -129,7 +137,6 @@ namespace DinoClassLib
                 Console.Write("\n");
             }
             //render score below screen
-            Console.Write("Score: " + ConsoleController.Score + "                    ");
             IOReturner returnVal = new IOReturner(checkInput(), maxScreenXsize);
             Console.SetCursorPosition(0, 0);
             return returnVal;

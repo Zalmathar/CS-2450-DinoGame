@@ -39,7 +39,7 @@ namespace DinoClassLib
             // TODO: Start the game in the pre game state, Create the player, and let the IO render the screen. When one of the jump keys is received start the game.
            this.gameState = Status.pre;
            this.Io = io;
-
+            Console.CursorVisible = false;
         }
 
         // Represents the states the game can be in
