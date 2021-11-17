@@ -20,7 +20,7 @@ namespace DinoTests.Steps
         {
             IO IOdummy = new IO();
             sc.Add("controller", new Controller(IOdummy));
-            sc.Get<Controller>("controller").gameState = Controller.status.running;
+            sc.Get<Controller>("controller").gameState = Controller.Status.running;
         }
 
         [Given(@"a controller that can create objects on frame update")]
@@ -40,19 +40,23 @@ namespace DinoTests.Steps
         [When(@"MakeObstacle has been called (.*) times")]
         public void WhenMakeObstacleHasBeenCalledTimes(int p0)
         {
-            
+            sc.Add("numberOfFrames", p0);
+            for (int i = 0; i <= p0; i++)
+            {
+                //sc.Get<Controller>("controller").MakeObstacle();
+            }
         }
 
         [Then(@"no collision is detected")]
         public void ThenNoCollisionIsDetected()
         {
-            sc.Get<Controller>("controller").gameState.Should().Be(Controller.status.running);
+            sc.Get<Controller>("controller").gameState.Should().Be(Controller.Status.running);
         }
 
         [Then(@"collision is detected")]
         public void ThenCollisionIsDetected()
         {
-            sc.Get<Controller>("controller").gameState.Should().Be(Controller.status.dead);
+            sc.Get<Controller>("controller").gameState.Should().Be(Controller.Status.dead);
         }
       
         [Then(@"an obstacle is removed from the screen")]
@@ -70,13 +74,13 @@ namespace DinoTests.Steps
         [Then(@"The score increases by (.*) points")]
         public void ThenTheScoreIncreasesByPoints(int p0)
         {
-            sc.Get<Controller>("controller").score.Should().Be(p0);
+            sc.Get<Controller>("controller").Score.Should().Be(p0);
         }
 
         [Then(@"score remains the same")]
         public void ThenScoreRemainsTheSame()
         {
-            sc.Get<Controller>("controller").score.Should().Be(0);
+            sc.Get<Controller>("controller").Score.Should().Be(0);
         }
 
 

@@ -12,16 +12,16 @@
             set;
         }
 
-        public int pointVal
+        public int PointVal
         {
             get;
         }
-        public int xSize
+        public int XSize
         {
             get;
         }
 
-        public int ySize
+        public int YSize
         {
             get;
         }
@@ -29,15 +29,15 @@
         public BigRock(Position p0)
         {
             position = p0;
-            xSize = 1;
-            ySize = 2;
-            pointVal = 10;
+            XSize = 1;
+            YSize = 2;
+            PointVal = 10;
             if (position.getY() != 1  || position.getX() <= 1)
             {
                 throw new NotImplementedException();
             }
         }
-        public void onFrameUpdate()
+        public void OnFrameUpdate()
         {
             int x = position.getX();//getting the current x value
             position.setX(x - 1);//assuming bottom left is (0,0)
