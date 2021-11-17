@@ -63,27 +63,29 @@ namespace DinoClassLib
                     // Add controller to screen
                     foreach (IPiece obst in ConsoleController.Obstacles)
                     {
+                        //Obstacle X and Y safety Checks
+                        if((obst.position.getX() > maxScreenXsize) || (obst.position.getX() < 0) || (obst.position.getY() > 4) || (obst.position.getY() < 1))
+                        {
+                            throw new Exception("Attempted to display an obstacle out of range");
+                        }
+                        
                         Pixel obstPixel = new Pixel();
                         obstPixel.foregroundColor = ConsoleColor.Black;
                         obstPixel.backgroundColor = ConsoleColor.Blue;
                         Type obsType = obst.GetType();
-
                         if (obsType.Equals(typeof(Bird)))
                         {
                             obstPixel.text = "< ";
                         }
-
                         else if (obsType.Equals(typeof(SmallRock)) || obsType.Equals(typeof(BigRock)))
                         {
                             obstPixel.text = "XX";
                         }
-
                         else
                         {
                             // Obst is of an Invalid type
                             throw new Exception("Controller obstacle list contains an object type not supported");
                         }
-
                         for (int i = 1; i < obst.ySize; i++)
                         {
                             Screen[obst.position.getX(), i + obst.position.getY()] = obstPixel;
