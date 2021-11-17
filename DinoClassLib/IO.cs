@@ -7,7 +7,7 @@ namespace DinoClassLib
     public class IO
     {
         private static int maxScreenXsize = 50;
-        public readonly static int maxFPS = 60;
+        public readonly static int maxFPS = 50;
         Pixel[,] Screen = new Pixel[maxScreenXsize, 6];
         private bool checkInput()
         {
@@ -107,14 +107,15 @@ namespace DinoClassLib
 
                         Pixel obstPixel = new Pixel();
                         obstPixel.foregroundColor = ConsoleColor.Black;
-                        obstPixel.backgroundColor = ConsoleColor.Blue;
                         Type obsType = obst.GetType();
                         if (obsType.Equals(typeof(Bird)))
                         {
+                            obstPixel.backgroundColor = ConsoleColor.White;
                             obstPixel.text = "< ";
                         }
                         else if (obsType.Equals(typeof(SmallRock)) || obsType.Equals(typeof(BigRock)))
                         {
+                            obstPixel.backgroundColor = ConsoleColor.Gray;
                             obstPixel.text = "XX";
                         }
                         else
@@ -122,7 +123,7 @@ namespace DinoClassLib
                             // Obst is of an Invalid type
                             throw new Exception("Controller obstacle list contains an object type not supported");
                         }
-                        for (int i = 1; i < obst.YSize; i++)
+                        for (int i = 0; i < obst.YSize; i++)
                         {
                             Screen[obst.position.getX() - 1, i + obst.position.getY()] = obstPixel;
                         }

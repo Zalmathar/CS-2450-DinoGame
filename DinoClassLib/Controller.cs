@@ -205,6 +205,5 @@ namespace DinoClassLib
                 info *= 2000;
                 Thread.Sleep((int)info);
             }
-        }
-    }
+        }    }
 }
