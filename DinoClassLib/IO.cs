@@ -7,21 +7,26 @@ namespace DinoClassLib
     public class IO
     {
         private static int maxScreenXsize = 50;
-        private static int maxFPS = 60;
+        public readonly static int maxFPS = 60;
         Pixel[,] Screen = new Pixel[maxScreenXsize, 6];
         private bool checkInput()
         {
             ConsoleKeyInfo cki;
-            cki = Console.ReadKey(true);
-            if (cki.Key.ToString() == "UpArrow" || cki.Key.ToString() == "Spacebar" || cki.Key.ToString() == "W")
+            if (Console.KeyAvailable == true)
             {
-                return true;
+                cki = Console.ReadKey(true);
+                if (cki.Key.ToString() == "UpArrow" || cki.Key.ToString() == "Spacebar" || cki.Key.ToString() == "W")
+                {
+                    return true;
+                }
+                return false;
             }
             return false;
         }
 
         public IOReturner render(Controller ConsoleController)
         {
+            Console.Clear();
             //Paint the backdrop
             for (int yi = 5; yi >= 0; yi--)
             {
@@ -53,8 +58,29 @@ namespace DinoClassLib
 
                     break;
                 case Controller.status.running: //TODO:
+                    // Create a new Screen Frame
+                    for (int yi = 5; yi >= 0; yi--)
+                    {
+                        for (int xi = 0; xi < maxScreenXsize; xi++)
+                        {
+                            Screen[xi, yi] = new Pixel();
+                            switch (yi)
+                            {
+                                case 6:
+                                    Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
+                                    break;
+                                case 0:
+                                    Screen[xi, yi].backgroundColor = ConsoleColor.Green;
+                                    break;
+                                default:
+                                    Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
+                                    break;
+                            }
+                        }
+                    }
+
                     // Add player to screen
-                    for (int i = 1; i < ConsoleController.player.ySize; i++)
+                    for (int i = 0; i < ConsoleController.player.ySize; i++)
                     {
                         // Player Safety check
                         if((ConsoleController.player.position.getX() != 3) || (ConsoleController.player.position.getY() > 3) || (ConsoleController.player.position.getY() < 1))
@@ -96,9 +122,9 @@ namespace DinoClassLib
                             // Obst is of an Invalid type
                             throw new Exception("Controller obstacle list contains an object type not supported");
                         }
-                        for (int i = 1; i < obst.ySize; i++)
+                        for (int i = 0; i < obst.ySize; i++)
                         {
-                            Screen[obst.position.getX(), i + obst.position.getY()] = obstPixel;
+                            Screen[obst.position.getX() - 1, i + obst.position.getY()] = obstPixel;
                         }
                     }
                     break;
