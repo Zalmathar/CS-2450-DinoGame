@@ -107,9 +107,6 @@ namespace DinoClassLib
 
             DeleteObstacle(delList);
             MakeObstacle();
-
-            // TODO: Display the game state to the user.
-            ioResult = Io.render(this);
             
         }
 
@@ -169,6 +166,7 @@ namespace DinoClassLib
 
         public void runGame()
         {
+
             IOReturner ioResult;
             double fps = (double)IO.maxFPS;
             while (true)
@@ -184,6 +182,7 @@ namespace DinoClassLib
                         Obstacles = new List<IPiece>();
                         // Reset the player
                         player = new Player(new Position(3, 1));
+                        Console.Clear();
                         gameState = Status.running;
                     }
                     FrameLimiter(fps);

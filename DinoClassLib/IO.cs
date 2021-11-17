@@ -26,7 +26,6 @@ namespace DinoClassLib
 
         public IOReturner render(Controller ConsoleController)
         {
-            Console.Clear();
             //Paint the backdrop
             for (int yi = 5; yi >= 0; yi--)
             {
@@ -131,7 +130,6 @@ namespace DinoClassLib
                     break;
 
                 case Controller.Status.dead:
-                    Console.Clear();
                     Console.WriteLine($"Youre final score is {ConsoleController.Score}");
                     Console.WriteLine("Please play again.");
 
@@ -153,6 +151,7 @@ namespace DinoClassLib
             //render score below screen
             Console.Write("Score: " + ConsoleController.Score + "                    ");
             IOReturner returnVal = new IOReturner(checkInput(), maxScreenXsize);
+            Console.SetCursorPosition(0, 0);
             return returnVal;
         }
 
