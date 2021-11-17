@@ -26,7 +26,7 @@ namespace DinoClassLib
 
         public IOReturner render(Controller ConsoleController)
         {
-
+            Console.CursorVisible = false;
             //Set colors that should be different from default, making sure to stay within bounds.
             switch (ConsoleController.gameState)
             {
