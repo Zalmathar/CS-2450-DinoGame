@@ -60,6 +60,8 @@ namespace DinoClassLib
         {
             IOReturner ioResult = Io.render(this);
 
+            _displayXsize = ioResult.maxScreenXSize;
+
             //IF the game is not running, render the screen, if input is recieved change the game state to start, but do nothing else.. 
             if (gameState != Status.running) {
                 if (ioResult.inputDetected)

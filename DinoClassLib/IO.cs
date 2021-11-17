@@ -6,8 +6,8 @@ namespace DinoClassLib
 {
     public class IO
     {
-        private static int maxScreenXsize = 50;
-        public readonly static int maxFPS = 50;
+        private static int maxScreenXsize = 60;
+        public readonly static int maxFPS = 60;
         Pixel[,] Screen = new Pixel[maxScreenXsize, 6];
         private bool checkInput()
         {
