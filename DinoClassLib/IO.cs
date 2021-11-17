@@ -45,7 +45,12 @@ namespace DinoClassLib
             //Set colors that should be different from default, making sure to stay within bounds.
             switch (ConsoleController.gameState)
             {
-                case Controller.Status.pre: //TODO: Impliment a pregame render
+
+                case Controller.status.pre: 
+                    Console.WriteLine("Welcome to the dinosaur game!");
+                    Console.WriteLine("Please press up, 'w' or the space bar to begin");
+                    Console.WriteLine("Use those buttons to make the dinosaur jump!");
+                    Console.WriteLine("Don't hit the obstacles!");
                     break;
                 case Controller.Status.running: //TODO:
                     // Add player to screen
@@ -97,7 +102,12 @@ namespace DinoClassLib
                         }
                     }
                     break;
-                case Controller.Status.dead: //TODO: Implement a dead render
+
+                case Controller.status.dead:
+                    Console.Clear();
+                    Console.WriteLine($"Youre final score is {ConsoleController.score}");
+                    Console.WriteLine("Please play again.");
+
                     break;
             }
 

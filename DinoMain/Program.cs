@@ -12,7 +12,7 @@ namespace DinoMain
             void FrameLimiter(double fps)
             {
                 double info = 1 / fps;
-                info = info * 1000;
+                info *= 1000;
                 Thread.Sleep((int)info);
             }
             double fps = .25;
