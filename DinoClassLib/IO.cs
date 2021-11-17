@@ -26,25 +26,6 @@ namespace DinoClassLib
 
         public IOReturner render(Controller ConsoleController)
         {
-            //Paint the backdrop
-            for (int yi = 5; yi >= 0; yi--)
-            {
-                for (int xi = 0; xi < maxScreenXsize; xi++)
-                {
-                    switch (yi)
-                    {
-                        case 6:
-                            Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
-                            break;
-                        case 0:
-                            Screen[xi, yi].backgroundColor = ConsoleColor.Green;
-                            break;
-                        default:
-                            Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
-                            break;
-                    }
-                }
-            }
 
             //Set colors that should be different from default, making sure to stay within bounds.
             switch (ConsoleController.gameState)
@@ -95,7 +76,7 @@ namespace DinoClassLib
                         Screen[ConsoleController.player.position.getX(), i + ConsoleController.player.position.getY()] = playerPixel;
                     }
 
-                    // Add controller to screen
+                    // Add Obstacles to screen
                     foreach (IPiece obst in ConsoleController.Obstacles)
                     {
                         //Obstacle X and Y safety Checks
@@ -132,7 +113,6 @@ namespace DinoClassLib
                 case Controller.Status.dead:
                     Console.WriteLine($"Youre final score is {ConsoleController.Score}");
                     Console.WriteLine("Please play again.");
-
                     break;
             }
 
