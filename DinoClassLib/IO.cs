@@ -2,7 +2,8 @@
 
 /// <summary>
 
-namespace DinoClassLib {
+namespace DinoClassLib
+{
     public class IO
     {
         private static int maxScreenXsize = 50;
@@ -18,6 +19,7 @@ namespace DinoClassLib {
             }
             return false;
         }
+
         public IOReturner render(Controller ConsoleController)
         {
             //Paint the backdrop
@@ -36,10 +38,7 @@ namespace DinoClassLib {
                         default:
                             Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
                             break;
-
                     }
-
-
                 }
             }
 
@@ -50,7 +49,7 @@ namespace DinoClassLib {
                     break;
                 case Controller.status.running: //TODO:
                     // Add player to screen
-                    for(int i = 1; i < ConsoleController.player.ySize; i++)
+                    for (int i = 1; i < ConsoleController.player.ySize; i++)
                     {
                         // Create new pixel with formating for player
                         Pixel playerPixel = new Pixel();
@@ -60,22 +59,32 @@ namespace DinoClassLib {
                         //overwrite the existing pixel with our new pixel at the correct position.
                         Screen[ConsoleController.player.position.getX(), i + ConsoleController.player.position.getY()] = playerPixel;
                     }
+
                     // Add controller to screen
-                    foreach(IPiece obst in ConsoleController.Obstacles)
+                    foreach (IPiece obst in ConsoleController.Obstacles)
                     {
                         Pixel obstPixel = new Pixel();
                         obstPixel.foregroundColor = ConsoleColor.Black;
                         obstPixel.backgroundColor = ConsoleColor.Blue;
                         Type obsType = obst.GetType();
-                        if(obsType.Equals(typeof(Bird)))
+
+                        if (obsType.Equals(typeof(Bird)))
                         {
                             obstPixel.text = "< ";
                         }
+
                         else if (obsType.Equals(typeof(SmallRock)) || obsType.Equals(typeof(BigRock)))
                         {
                             obstPixel.text = "XX";
                         }
-                        for(int i = 1; i < obst.ySize; i++)
+
+                        else
+                        {
+                            // Obst is of an Invalid type
+                            throw new Exception("Controller obstacle list contains an object type not supported");
+                        }
+
+                        for (int i = 1; i < obst.ySize; i++)
                         {
                             Screen[obst.position.getX(), i + obst.position.getY()] = obstPixel;
                         }
@@ -85,7 +94,6 @@ namespace DinoClassLib {
                     break;
             }
 
-
             //Render screen
             for (int yi = 5; yi >= 0; yi--)
             {
@@ -94,20 +102,16 @@ namespace DinoClassLib {
                     Console.BackgroundColor = Screen[xi, yi].backgroundColor;
                     Console.ForegroundColor = Screen[xi, yi].foregroundColor;
                     Console.Write(Screen[xi, yi].text);
-
                 }
                 Console.ResetColor();
                 Console.Write("\n");
             }
             //render score below screen
             Console.Write("Score: " + ConsoleController.score + "                    ");
-
-
-
             IOReturner returnVal = new IOReturner(checkInput(), maxScreenXsize);
             return returnVal;
-
         }
+
         public IO()
         {
             for (int yi = 5; yi >= 0; yi--)
@@ -126,13 +130,11 @@ namespace DinoClassLib {
                         default:
                             Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
                             break;
-
                     }
-
-
                 }
             }
         }
+
         public IO(int screenXsize)
         {
             //
@@ -155,13 +157,9 @@ namespace DinoClassLib {
                         default:
                             Screen[xi, yi].backgroundColor = ConsoleColor.Blue;
                             break;
-
                     }
-
-
                 }
             }
-
         }
     }
 
@@ -192,8 +190,5 @@ namespace DinoClassLib {
             backgroundColor = ConsoleColor.Black;
             foregroundColor = ConsoleColor.White;
         }
-
     }
-
-
 }
