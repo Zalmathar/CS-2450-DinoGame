@@ -22,7 +22,7 @@ namespace DinoTests.Steps
             {
                 sc.Add("controller", new Controller(new IO()));
             }
-            sc.Get<Controller>("controller").Obstacles.Add(new Bird(p0, p1));
+            sc.Get<Controller>("controller").Obstacles.Add(new Bird(new Position(p0, p1)));
         }
 
         [Given(@"a bird at \((.*), (.*)\)")]
@@ -37,7 +37,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("bird", new Bird(p0, p1));
+                sc.Add("bird", new Bird(new Position(p0, p1)));
             }
             catch (Exception e)
             {
@@ -50,7 +50,7 @@ namespace DinoTests.Steps
         {
             try
             {
-                sc.Add("bird", new Bird(sc.Get<int>("x"), sc.Get<int>("y")));
+                sc.Add("bird", new Bird(new Position(sc.Get<int>("x"), sc.Get<int>("y"))));
             }
             catch (Exception e)
             {

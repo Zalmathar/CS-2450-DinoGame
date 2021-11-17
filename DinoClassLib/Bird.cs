@@ -24,13 +24,13 @@ namespace DinoClassLib
             get;
         }
 
-        public Bird(int x, int y)
+        public Bird(Position p0)
         {
-            position = new Position(x,y);
+            position = p0;
             xSize = 1;//unsure about this, clarify later
             ySize = 1;
             pointVal = 20;
-            if(position.getY() < 3 || position.getY() > 4 || position.getX() > x || position.getX() <= 1)
+            if(position.getY() < 3 || position.getY() > 4  || position.getX() <= 1)
             {
                 throw new NotImplementedException();
             }

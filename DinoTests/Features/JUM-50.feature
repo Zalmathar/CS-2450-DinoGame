@@ -26,11 +26,6 @@ Feature: JUM50
 		When a big rock is constructed
 		Then throw exception
 
-	Scenario: JUM-50 big rock x position is too high
-		Given a big rock at (500, 1)
-		When a big rock is constructed
-		Then throw exception
-
 	Scenario: JUM-50 big rock points are correct
 		Given a big rock at (4, 1)
 		When a big rock is constructed

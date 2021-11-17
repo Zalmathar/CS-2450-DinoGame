@@ -26,13 +26,13 @@
             get;
         }
 
-        public BigRock(int x, int y)
+        public BigRock(Position p0)
         {
-            position = new Position(x, y);
+            position = p0;
             xSize = 1;
             ySize = 2;
             pointVal = 10;
-            if (position.getY() != 1 || position.getX() > x || position.getX() <= 1)
+            if (position.getY() != 1  || position.getX() <= 1)
             {
                 throw new NotImplementedException();
             }
