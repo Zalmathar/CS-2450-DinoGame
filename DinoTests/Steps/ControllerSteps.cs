@@ -40,11 +40,7 @@ namespace DinoTests.Steps
         [When(@"MakeObstacle has been called (.*) times")]
         public void WhenMakeObstacleHasBeenCalledTimes(int p0)
         {
-            sc.Add("numberOfFrames", p0);
-            for (int i = 0; i <= p0; i++)
-            {
-                sc.Get<Controller>("controller").MakeObstacle();
-            }
+            
         }
 
         [Then(@"no collision is detected")]
